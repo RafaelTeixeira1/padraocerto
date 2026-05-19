@@ -152,7 +152,7 @@ pie showData
   "Abertas" : 0
 ```
 
-### Interpretação
+<span style="color:#2563EB; font-weight:bold;">Interpretação</span>
 
 O backlog planejado foi totalmente concluído. Isso indica que o escopo definido para o MVP foi controlado e entregue. Não houve criação de novas issues fora do planejamento inicial durante a fase final, o que reduz o risco de scope creep.
 
