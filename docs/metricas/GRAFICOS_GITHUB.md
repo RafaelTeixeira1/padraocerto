@@ -766,8 +766,6 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 | Horas por integrante | Esforço equilibrado entre Rafael e Jhannyfer | Manter divisão de responsabilidades |
 | Horas de retrabalho | Integração e ambiente exigiram ajustes | Priorizar estabilização com Docker e smoke test |
 | Issues por área | Forte peso de frontend e backend | Implementar fluxos verticais completos |
-| Issues de teste | Necessidade de evidência objetiva | Criar smoke test automatizado |
-| Issue de fix | Integrações ainda exigiam ajuste | Corrigir comunicação frontend/backend |
 | Kanban final | Tudo concluído, mas fechamento formal concentrado | Explicar a diferença entre datas do GitHub e datas da planilha |
 | Confiabilidade do produto | Fluxo principal passou | Manter Docker + MySQL como ambiente padrão |
 
@@ -779,9 +777,6 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 |---|---|---|
 | Fechamento de issues em lote | Distorce throughput semanal e lead time | Mover issues durante o desenvolvimento |
 | HH não existe nativamente no GitHub | Exige fonte complementar | Usar planilha de horas como fonte oficial do esforço |
-| Cycle time sem data real de início | Dificulta medir tempo ativo | Registrar início real de cada tarefa |
-| Usabilidade sem usuários externos | Métrica fica menos objetiva | Fazer teste cronometrado com usuários |
-| Desempenho sem tempo por endpoint | Avaliação ainda qualitativa | Medir latência média da API |
 
 ---
 
