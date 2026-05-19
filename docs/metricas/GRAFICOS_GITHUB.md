@@ -5,7 +5,7 @@
 **Curso**: Sistemas de Informação - IF Goiano Ceres  
 **Alunos**: Rafael de S. Teixeira e Jhannyfer S. R. Biângulo  
 **Data da coleta**: 2026-05-19  
-**Fonte principal**: GitHub Issues, Milestones, Project/Kanban, commits e smoke test da API  
+**Fontes principais**: GitHub Issues, Milestones, Project/Kanban, commits, smoke test da API e planilha de horas  
 **Repositório**: `RafaelTeixeira1/padraocerto`
 
 > Observação: no documento inicial da disciplina o sistema aparece como **CheckObra**. No repositório e na entrega final o produto foi consolidado com o nome **PadrãoCerto**.
@@ -67,6 +67,8 @@ Foram usadas as informações registradas no GitHub:
 | Commits | evidência de implementação |
 | Smoke test | validação funcional do produto |
 
+Também foi usada a planilha `planilha_metricas_padraocerto_preenchida.xlsx` como fonte oficial de esforço humano, horas por integrante, datas de execução e retrabalho.
+
 Comandos de coleta:
 
 ```bash
@@ -97,6 +99,13 @@ node scripts/api-smoke-test.mjs
 | Issues de documentação | 10 |
 | Issues de teste | 6 |
 | Issues de correção | 1 |
+| Total de horas registradas na planilha | 108 h |
+| Horas Rafael | 57 h |
+| Horas Jhannyfer | 51 h |
+| Registros de trabalho na planilha | 32 |
+| Período de execução registrado | 01/04/2026 a 25/04/2026 |
+| Registros com retrabalho | 8 |
+| Horas de retrabalho | 25 h |
 | Lead time médio das issues | 9,85 dias |
 | Kanban final | 48 itens em Concluído |
 | Smoke test da API | Aprovado |
@@ -205,7 +214,38 @@ O esforço representa o trabalho humano necessário para desenvolver o sistema.
 
 ### Evidência complementar no GitHub
 
-O GitHub não mede horas trabalhadas diretamente. Por isso, foram usados commits e issues como evidência complementar de atividade técnica.
+O GitHub não mede horas trabalhadas diretamente. Por isso, a métrica de esforço foi coletada pela planilha `planilha_metricas_padraocerto_preenchida.xlsx`, e o GitHub foi usado como evidência complementar de atividade técnica.
+
+### Resultados da planilha de horas
+
+| Indicador | Resultado |
+|---|---:|
+| Total de horas registradas | 108 h |
+| Horas Rafael | 57 h |
+| Horas Jhannyfer | 51 h |
+| Registros de trabalho | 32 |
+| Período registrado | 01/04/2026 a 25/04/2026 |
+| Registros com retrabalho | 8 |
+| Horas de retrabalho | 25 h |
+| Percentual de horas em retrabalho | 23,1% |
+
+```mermaid
+xychart-beta
+  title "Horas Trabalhadas por Integrante"
+  x-axis ["Rafael", "Jhannyfer"]
+  y-axis "Horas" 0 --> 60
+  bar [57, 51]
+```
+
+```mermaid
+xychart-beta
+  title "Horas Trabalhadas por Data"
+  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04"]
+  y-axis "Horas" 0 --> 9
+  bar [7, 6, 7, 8, 6, 6, 9, 5, 6, 9, 7, 9, 4, 7, 7, 5]
+```
+
+### Evidência complementar no GitHub
 
 | Indicador complementar | Resultado |
 |---|---:|
@@ -215,11 +255,13 @@ O GitHub não mede horas trabalhadas diretamente. Por isso, foram usados commits
 
 ### Interpretação
 
-O esforço foi distribuído entre dois integrantes de forma equilibrada, como mostra a distribuição de responsáveis. Entretanto, a métrica de HH depende da planilha de horas para ser precisa. O GitHub ajuda a comprovar atividade e entrega, mas não substitui o registro de horas.
+O esforço foi distribuído de forma equilibrada: Rafael registrou 57 horas e Jhannyfer 51 horas. A diferença de 6 horas é pequena em relação ao total de 108 horas, indicando divisão de trabalho próxima entre os integrantes.
+
+As 25 horas de retrabalho representam 23,1% do esforço total. Isso indica que houve ajustes relevantes, principalmente em configuração, integração e correções de ambiente. O valor não necessariamente significa baixa qualidade; em um projeto com Docker, MySQL, backend e frontend integrados, parte do retrabalho é esperado durante estabilização.
 
 ### Limitação
 
-Para uma análise mais forte de esforço, é necessário manter a planilha de horas atualizada. Sem ela, não é correto afirmar o esforço real em horas apenas com base em commits ou issues.
+A planilha mede o esforço real melhor do que o GitHub. Já o GitHub comprova entrega e rastreabilidade. Por isso, a apresentação deve mostrar os dois: **horas reais de trabalho pela planilha** e **conclusão formal pelo GitHub**.
 
 ---
 
@@ -242,6 +284,34 @@ xychart-beta
 ### Interpretação
 
 A distribuição ficou praticamente equilibrada. Isso reduz risco de concentração de trabalho em apenas um integrante. A única issue sem responsável não compromete a análise, pois o conjunto total foi concluído.
+
+---
+
+## 8.1 Horas por Milestone na Planilha
+
+A aba `Issues` da planilha também registra uma amostra de horas por milestone.
+
+```mermaid
+xychart-beta
+  title "Horas por Milestone na Planilha"
+  x-axis ["M1", "M2", "M3", "M5", "M6", "M7", "M8"]
+  y-axis "Horas" 0 --> 23
+  bar [7, 23, 5, 10, 5, 7, 7]
+```
+
+| Milestone | Horas |
+|---|---:|
+| M1 | 7 |
+| M2 | 23 |
+| M3 | 5 |
+| M5 | 10 |
+| M6 | 5 |
+| M7 | 7 |
+| M8 | 7 |
+
+### Interpretação
+
+A milestone M2 aparece novamente como a mais trabalhosa. Isso confirma a leitura feita pelas issues: a base visual e de navegação exigiu mais esforço, pois sustentou o restante do sistema.
 
 ---
 
@@ -268,6 +338,8 @@ Foi observado o tempo entre criação e fechamento das issues.
 
 ### Gráfico: Fechamento por Data
 
+O GitHub registra o fechamento formal das issues em 19/05/2026. Porém, a planilha mostra que a execução do trabalho aconteceu em várias datas entre 01/04/2026 e 25/04/2026.
+
 ```mermaid
 xychart-beta
   title "Issues Fechadas por Data"
@@ -278,7 +350,17 @@ xychart-beta
 
 ### Interpretação
 
-Todas as issues foram fechadas em 2026-05-19. Isso mostra que o fechamento formal no GitHub foi concentrado no final. Como dado de gestão, esse comportamento indica uma limitação: parte do progresso real aconteceu antes, mas a movimentação final das issues foi feita em lote.
+Todas as issues foram fechadas formalmente em 2026-05-19. Isso mostra que o fechamento no GitHub foi concentrado no final. No entanto, a planilha de horas demonstra que o trabalho não foi feito de última hora: houve registros distribuídos entre 01/04 e 25/04.
+
+```mermaid
+xychart-beta
+  title "Execução Real Registrada na Planilha"
+  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04"]
+  y-axis "Horas" 0 --> 9
+  line [7, 6, 7, 8, 6, 6, 9, 5, 6, 9, 7, 9, 4, 7, 7, 5]
+```
+
+Essa separação é importante: **a data de fechamento da issue é um dado administrativo**, enquanto **a data da planilha representa o período real de execução**.
 
 ### Decisão corretiva recomendada
 
@@ -298,13 +380,19 @@ Throughput: quantidade de issues concluídas por período.
 
 ### Resultado
 
-| Período | Issues concluídas |
+| Indicador | Resultado |
 |---|---:|
-| 2026-05-19 | 48 |
+| Issues concluídas no GitHub | 48 |
+| Registros de trabalho na planilha | 32 |
+| Total de horas trabalhadas | 108 h |
+| Produtividade por esforço | 0,44 issues/h |
+| Média de horas por issue | 2,25 h/issue |
 
 ### Interpretação
 
-O throughput final foi alto porque as issues foram fechadas em lote. Isso confirma a conclusão do backlog, mas distorce a análise semanal. Para avaliação acadêmica, o dado mostra entrega final completa; para gestão real, seria melhor registrar o progresso continuamente.
+O throughput final foi alto porque as issues foram fechadas em lote. Por outro lado, a planilha permite analisar a produtividade por esforço: 48 issues concluídas para 108 horas registradas, resultando em aproximadamente 0,44 issue por hora, ou 2,25 horas por issue.
+
+Esse valor deve ser interpretado com cuidado, porque nem todas as issues têm o mesmo tamanho. Algumas são simples, como documentação, e outras são complexas, como persistência, autenticação e inspeções.
 
 ### Decisão de processo
 
@@ -332,6 +420,9 @@ Foi observada a ocorrência de correções e falhas identificadas no fluxo final
 | Issues de teste | 6 |
 | Falhas no smoke test final | 0 |
 | Taxa aproximada de retrabalho por issue fix | 2,1% |
+| Registros de retrabalho na planilha | 8 |
+| Horas de retrabalho na planilha | 25 h |
+| Taxa de retrabalho por horas | 23,1% |
 
 ```mermaid
 pie showData
@@ -346,7 +437,9 @@ pie showData
 
 ### Interpretação
 
-A presença de apenas uma issue do tipo fix sugere baixo volume formal de correção no backlog. O smoke test final não encontrou falhas no fluxo principal, o que indica estabilidade mínima para demonstração do MVP.
+A presença de apenas uma issue do tipo fix sugere baixo volume formal de correção no backlog. Já a planilha mostra 25 horas de retrabalho, principalmente em ajustes de Docker, banco, CORS, responsividade e integração. Isso mostra que o retrabalho existiu, mas foi tratado durante a execução e não ficou como falha final do produto.
+
+O smoke test final não encontrou falhas no fluxo principal, o que indica estabilidade mínima para demonstração do MVP.
 
 ### Limitação
 
@@ -372,12 +465,14 @@ Estabilidade das entregas e necessidade de retrabalho.
 |---|---:|
 | Issues de teste | 6 |
 | Issue de correção formal | 1 |
+| Registros de retrabalho | 8 |
+| Horas de retrabalho | 25 h |
 | Smoke test final | Aprovado |
 | Falhas finais | 0 |
 
 ### Interpretação
 
-O processo teve uma fase final de validação bem definida. O smoke test cobre cadastro, obra, checklist, vínculo, inspeção, finalização, relatório e dashboard. Isso reduz o risco de entregar uma aplicação apenas visual sem funcionamento real.
+O processo teve retrabalho durante a implementação, mas terminou com uma fase final de validação bem definida. O smoke test cobre cadastro, obra, checklist, vínculo, inspeção, finalização, relatório e dashboard. Isso reduz o risco de entregar uma aplicação apenas visual sem funcionamento real.
 
 ### Decisão relacionada
 
@@ -430,12 +525,16 @@ Volume de entrega em relação ao processo de trabalho.
 - Throughput
 - Issues por responsável
 - Distribuição por milestone
+- Produtividade por esforço
 
 ### Resultados
 
 | Indicador | Resultado |
 |---|---:|
 | Throughput final | 48 issues concluídas |
+| Total de horas | 108 h |
+| Produtividade por esforço | 0,44 issues/h |
+| Média de horas por issue | 2,25 h/issue |
 | Responsável com mais issues | RafaelTeixeira1, 24 |
 | Segundo responsável | jhannyfer, 23 |
 | Maior milestone | M2, 8 issues |
@@ -647,10 +746,13 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 | Métrica observada | O que revelou | Decisão tomada |
 |---|---|---|
 | Total de issues | Escopo grande para MVP acadêmico | Dividir em 10 milestones |
+| Planilha de horas | Trabalho distribuído de 01/04 a 25/04 | Separar execução real de fechamento formal no GitHub |
+| Horas por integrante | Esforço equilibrado entre Rafael e Jhannyfer | Manter divisão de responsabilidades |
+| Horas de retrabalho | Integração e ambiente exigiram ajustes | Priorizar estabilização com Docker e smoke test |
 | Issues por área | Forte peso de frontend e backend | Implementar fluxos verticais completos |
 | Issues de teste | Necessidade de evidência objetiva | Criar smoke test automatizado |
 | Issue de fix | Integrações ainda exigiam ajuste | Corrigir comunicação frontend/backend |
-| Kanban final | Tudo concluído, mas fechamento concentrado | Registrar limitação e evidências finais |
+| Kanban final | Tudo concluído, mas fechamento formal concentrado | Explicar a diferença entre datas do GitHub e datas da planilha |
 | Confiabilidade do produto | Fluxo principal passou | Manter Docker + MySQL como ambiente padrão |
 
 ---
@@ -660,7 +762,7 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 | Limitação | Impacto | Como melhorar |
 |---|---|---|
 | Fechamento de issues em lote | Distorce throughput semanal e lead time | Mover issues durante o desenvolvimento |
-| Ausência de HH detalhado no GitHub | Limita análise de esforço real | Preencher planilha de horas continuamente |
+| HH não existe nativamente no GitHub | Exige fonte complementar | Usar planilha de horas como fonte oficial do esforço |
 | Cycle time sem data real de início | Dificulta medir tempo ativo | Registrar início real de cada tarefa |
 | Usabilidade sem usuários externos | Métrica fica menos objetiva | Fazer teste cronometrado com usuários |
 | Desempenho sem tempo por endpoint | Avaliação ainda qualitativa | Medir latência média da API |
@@ -671,9 +773,11 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 As métricas revelaram que o projeto teve escopo bem definido, organizado em 48 issues e 10 milestones. O backlog foi totalmente concluído e o Kanban terminou com 48 itens em **Concluído**.
 
-A métrica mais relevante para o projeto foi a quantidade de issues por milestone, pois ajudou a visualizar o tamanho do trabalho e a distribuição do escopo. Para o processo, o smoke test foi a evidência mais importante, porque validou que o sistema não ficou apenas visual: o fluxo principal funciona com persistência real em MySQL.
+A planilha de horas complementou o GitHub e mostrou que a execução real ocorreu entre 01/04/2026 e 25/04/2026, com 108 horas registradas. Isso é importante porque o fechamento das issues no GitHub ocorreu em lote no dia 19/05/2026, mas os registros de esforço demonstram que o trabalho foi realizado ao longo do desenvolvimento.
 
-O uso de métricas também mostrou limitações. Como várias issues foram fechadas no mesmo dia, métricas como throughput semanal, lead time e cycle time ficaram menos precisas para representar o andamento real. Isso é um aprendizado importante: métricas dependem de coleta disciplinada ao longo do tempo.
+A métrica mais relevante para o projeto foi a combinação entre issues por milestone e horas trabalhadas, pois ela mostrou tanto o tamanho do escopo quanto o esforço real aplicado. Para o processo, o smoke test foi a evidência mais importante, porque validou que o sistema não ficou apenas visual: o fluxo principal funciona com persistência real em MySQL.
+
+O uso de métricas também mostrou limitações. Como várias issues foram fechadas no mesmo dia, métricas como throughput semanal, lead time e cycle time ficaram menos precisas para representar o andamento real apenas pelo GitHub. A planilha corrigiu parte dessa limitação ao registrar datas e horas efetivas de trabalho.
 
 Para projetos futuros, a equipe deve:
 
@@ -711,7 +815,9 @@ Tempo sugerido: 20 a 30 minutos.
 
 > Para tamanho e trabalho, usamos a quantidade de issues e milestones. O projeto teve 48 issues distribuídas em 10 milestones. Isso foi adequado porque cada issue representava uma funcionalidade, teste, ajuste ou documentação. O backlog foi 100% concluído, o que mostra que o escopo do MVP foi controlado.
 
-> Para prazo, calculamos o lead time médio das issues, que ficou em aproximadamente 9,85 dias. Porém, observamos uma limitação: muitas issues foram fechadas no mesmo dia, então essa métrica mostra bem a conclusão formal, mas não representa perfeitamente o progresso diário.
+> Para esforço, usamos a planilha de horas. Ela registra 108 horas de trabalho entre 01 de abril e 25 de abril, sendo 57 horas de Rafael e 51 horas de Jhannyfer. Isso mostra que o esforço foi distribuído de forma equilibrada na equipe.
+
+> Para prazo, calculamos o lead time médio das issues, que ficou em aproximadamente 9,85 dias. Porém, observamos uma limitação: muitas issues foram fechadas no GitHub no mesmo dia. Por isso, separamos fechamento formal das issues e execução real registrada na planilha. A planilha mostra que o trabalho aconteceu ao longo de abril, não apenas no dia de fechamento do GitHub.
 
 ---
 
@@ -719,7 +825,9 @@ Tempo sugerido: 20 a 30 minutos.
 
 > No processo, avaliamos qualidade, desempenho e produtividade. A principal evidência de qualidade foi o smoke test automatizado, que executa o fluxo completo: cadastro, obra, checklist, vínculo, inspeção, finalização, relatório e dashboard. O teste passou sem falhas, indicando que o processo gerou uma entrega funcional.
 
-> Também observamos que o Kanban terminou com 48 itens em Concluído. Isso mostra conclusão do trabalho, mas também aprendemos que o ideal seria movimentar as issues ao longo do desenvolvimento para melhorar métricas como cycle time.
+> Também observamos 25 horas de retrabalho registradas na planilha. Esse retrabalho ocorreu principalmente em ajustes de ambiente, integração e responsividade. A leitura que fazemos é que houve instabilidade normal de integração, mas ela foi corrigida antes da entrega final.
+
+> O Kanban terminou com 48 itens em Concluído. Isso mostra conclusão do trabalho, mas também aprendemos que o ideal seria movimentar as issues ao longo do desenvolvimento para melhorar métricas como cycle time.
 
 ---
 
@@ -733,3 +841,4 @@ Tempo sugerido: 20 a 30 minutos.
 
 > A principal conclusão é que as métricas ajudaram a transformar o acompanhamento do projeto em algo mais objetivo. Elas mostraram que o escopo foi concluído, que o fluxo principal funciona e que a equipe conseguiu organizar o trabalho em milestones. Ao mesmo tempo, revelaram limitações na coleta, principalmente em horas trabalhadas e movimentação contínua do Kanban. Para próximos projetos, a equipe deve registrar dados de forma mais frequente para obter métricas mais precisas.
 
+> Um ponto importante é que o GitHub sozinho não conta toda a história. Ele mostra a conclusão formal das issues, mas a planilha mostra o esforço real ao longo do tempo. Usando as duas fontes juntas, conseguimos explicar melhor o andamento do projeto.
