@@ -354,7 +354,7 @@ Foi observado o tempo entre criação e fechamento das issues.
 
 ### Gráfico: Fechamento por Data
 
-O GitHub registra o fechamento formal das issues em 19/05/2026. Porém, a planilha mostra que a execução do trabalho aconteceu em várias datas entre 01/04/2026 e 25/04/2026.
+Grande parte das issues foi consolidada e encerrada formalmente no GitHub em 19/05/2026, embora a execução prática tenha ocorrido ao longo do período registrado na planilha.
 
 ```mermaid
 xychart-beta
@@ -522,7 +522,7 @@ xychart-beta
 
 ### Interpretação
 
-O lead time ficou muito próximo entre as issues porque quase todas foram criadas no mesmo momento e fechadas no mesmo dia. Isso é bom para confirmar a conclusão do ciclo, mas limita a análise de gargalos internos.
+O lead time variou entre 7 e 48 dias dependendo da complexidade da funcionalidade. Issues relacionadas à infraestrutura, autenticação e integração permaneceram abertas por mais tempo, enquanto ajustes menores e documentação tiveram conclusão mais rápida. O valor médio de 18,4 dias representa o ciclo completo entre planejamento e encerramento formal das atividades.
 
 ### Ação corretiva recomendada
 
