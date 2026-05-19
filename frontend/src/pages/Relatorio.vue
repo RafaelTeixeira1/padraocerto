@@ -150,9 +150,8 @@ onMounted(async () => {
       const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
       const res = await axios.get(`${base}/inspecoes/${id}`)
       const data = res.data
-      report.value.obra = (await axios.get(`${base}/obras/${data.obraId}`)).data.nome || ''
-      const checklist = (await axios.get(`${base}/checklists`)).data.find(c => c.id === data.checklistId)
-      report.value.checklist = checklist ? checklist.nome : ''
+      report.value.obra = data.obraNome || ''
+      report.value.checklist = data.checklistNome || ''
       report.value.responsavel = data.responsavel
       report.value.totalItens = data.itens.length
       report.value.conformidade = data.conformidade

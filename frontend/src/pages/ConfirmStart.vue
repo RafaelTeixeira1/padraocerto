@@ -35,7 +35,7 @@ const obra = ref({ nome: 'Carregando...' })
 const checklist = ref({ nome: 'Carregando...', itens: [] })
 const loading = ref(false)
 const errorMessage = ref('')
-const responsavel = ref('Usuário logado')
+const responsavel = ref(localStorage.getItem('userName') || 'Usuário logado')
 
 onMounted(async () => {
   try {
@@ -66,7 +66,12 @@ const confirmStart = async () => {
     router.push(`/obras/${obraId}/checklist/${checklistId}/responder?inspecao=${inspecao.id}`)
   } catch (err) {
     console.error(err)
-    errorMessage.value = 'Erro ao iniciar inspeção'
+    if (err.response?.status === 409 && err.response?.data?.inspecaoId) {
+      router.push(`/obras/${obraId}/checklist/${checklistId}/responder?inspecao=${err.response.data.inspecaoId}`)
+      return
+    }
+
+    errorMessage.value = err.response?.data?.error || 'Erro ao iniciar inspeção'
   } finally {
     loading.value = false
   }

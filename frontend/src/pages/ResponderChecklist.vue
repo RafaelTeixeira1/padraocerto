@@ -6,6 +6,9 @@
         <button @click="router.back()" class="text-secondary hover:underline mb-4">← Voltar</button>
         <h1 class="text-3xl font-bold text-foreground mb-2">Inspeção em Andamento</h1>
         <p class="text-muted-foreground">{{ checklist.obra }} • {{ checklist.nome }}</p>
+        <p v-if="loadError" class="mt-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          {{ loadError }}
+        </p>
       </div>
 
       <!-- Progress Bar -->
@@ -159,7 +162,10 @@ const respondidos = computed(() => responses.value.filter(r => r.conforme !== nu
 const progressPercent = computed(() => Math.round((respondidos.value / checklist.value.itens.length) * 100))
 
 onMounted(async () => {
-  if (!inspectionId.value) return
+  if (!inspectionId.value) {
+    loadError.value = 'Inspeção não informada'
+    return
+  }
 
   loading.value = true
   try {
@@ -230,13 +236,11 @@ const finishInspection = async () => {
       await axios.post(`${base}/inspecoes/${inspecaoId}/finish`, { responses: responsesPayload })
       router.push({ name: 'relatorio', params: { id: inspecaoId } })
     } else {
-      // fallback: navegar com dados locais
-      const conformes = responses.value.filter(r => r.conforme === true).length
-      router.push({ name: 'relatorio', params: { id: Math.random().toString(36).substr(2,9), conformidade: Math.round((conformes / checklist.value.itens.length) * 100), conformes } })
+      alert('Inspeção não informada')
     }
   } catch (err) {
     console.error(err)
-    alert('Erro ao finalizar inspeção')
+    alert(err.response?.data?.error || 'Erro ao finalizar inspeção')
   }
 }
 </script>
