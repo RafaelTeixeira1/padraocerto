@@ -327,7 +327,7 @@ xychart-beta
 
 ### Interpretação
 
-A milestone M2 aparece novamente como a mais trabalhosa. Isso confirma a leitura feita pelas issues: a base visual e de navegação exigiu mais esforço, pois sustentou o restante do sistema.
+A milestone M2 permaneceu como a mais trabalhosa, concentrando grande parte da construção visual, componentes reutilizáveis e navegação do sistema. As milestones M5, M6 e M7 também tiveram alta carga de horas por envolverem persistência, integração backend/frontend e execução do fluxo completo de inspeções.
 
 ---
 
