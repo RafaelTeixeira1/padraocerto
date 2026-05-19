@@ -406,9 +406,9 @@ Throughput: quantidade de issues concluídas por período.
 
 ### Interpretação
 
-O throughput final foi alto porque as issues foram fechadas em lote. Por outro lado, a planilha permite analisar a produtividade por esforço: 48 issues concluídas para 108 horas registradas, resultando em aproximadamente 0,44 issue por hora, ou 2,25 horas por issue.
+O throughput final registrado no GitHub ficou elevado porque as issues foram consolidadas e encerradas formalmente na etapa final do projeto. Por isso, a planilha de horas foi utilizada como principal evidência de produtividade operacional.
 
-Esse valor deve ser interpretado com cuidado, porque nem todas as issues têm o mesmo tamanho. Algumas são simples, como documentação, e outras são complexas, como persistência, autenticação e inspeções.
+Considerando as 156 horas registradas e as 48 issues concluídas, observa-se média aproximada de 3,25 horas por issue. Essa média deve ser interpretada com cautela, porque as issues possuem tamanhos e complexidades diferentes: algumas envolvem documentação simples, enquanto outras abrangem integração backend/frontend, persistência, autenticação e execução completa de inspeções.
 
 ### Decisão de processo
 
