@@ -307,20 +307,23 @@ A aba `Issues` da planilha também registra uma amostra de horas por milestone.
 ```mermaid
 xychart-beta
   title "Horas por Milestone na Planilha"
-  x-axis ["M1", "M2", "M3", "M5", "M6", "M7", "M8"]
-  y-axis "Horas" 0 --> 23
-  bar [7, 23, 5, 10, 5, 7, 7]
+  x-axis ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10"]
+  y-axis "Horas" 0 --> 35
+  bar [12, 31, 14, 12, 24, 18, 20, 11, 7, 7]
 ```
 
 | Milestone | Horas |
 |---|---:|
-| M1 | 7 |
-| M2 | 23 |
-| M3 | 5 |
-| M5 | 10 |
-| M6 | 5 |
-| M7 | 7 |
-| M8 | 7 |
+| M1 | 12 |
+| M2 | 31 |
+| M3 | 14 |
+| M4 | 12 |
+| M5 | 24 |
+| M6 | 18 |
+| M7 | 20 |
+| M8 | 11 |
+| M9 | 7 |
+| M10 | 7 |
 
 ### Interpretação
 
