@@ -522,11 +522,11 @@ xychart-beta
 
 ### Interpretação
 
-O lead time variou entre 7 e 48 dias dependendo da complexidade da funcionalidade. Issues relacionadas à infraestrutura, autenticação e integração permaneceram abertas por mais tempo, enquanto ajustes menores e documentação tiveram conclusão mais rápida. O valor médio de 18,4 dias representa o ciclo completo entre planejamento e encerramento formal das atividades.
+O lead time variou entre 7 e 48 dias dependendo da complexidade das funcionalidades implementadas. Issues relacionadas à infraestrutura, integração frontend/backend, persistência e autenticação permaneceram abertas por mais tempo devido à dependência entre módulos e necessidade de estabilização do ambiente Docker.
 
-### Ação corretiva recomendada
+Já atividades menores, como documentação, ajustes visuais e configuração inicial, apresentaram tempo de conclusão mais curto.
 
-Registrar datas reais de início e movimentar as issues no Kanban durante o desenvolvimento. Assim, o cycle time ficaria mais fiel ao tempo de trabalho ativo.
+O lead time médio de 18,4 dias representa o ciclo completo entre planejamento, desenvolvimento, testes e encerramento formal das atividades no GitHub.
 
 ---
 
