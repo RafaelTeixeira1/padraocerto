@@ -123,11 +123,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import axios from 'axios'
 import { Button } from '../components/ui'
 
 const router = useRouter()
+const route = useRoute()
 
 const checklist = ref({
   obra: 'Centro Comercial',
@@ -141,6 +143,10 @@ const checklist = ref({
   ]
 })
 
+const inspectionId = ref(route.query.inspecao ? String(route.query.inspecao) : '')
+const loading = ref(false)
+const loadError = ref('')
+
 const currentItemIndex = ref(0)
 const responses = ref(checklist.value.itens.map(() => ({
   conforme: null,
@@ -151,6 +157,47 @@ const currentItem = computed(() => checklist.value.itens[currentItemIndex.value]
 const isLastItem = computed(() => currentItemIndex.value === checklist.value.itens.length - 1)
 const respondidos = computed(() => responses.value.filter(r => r.conforme !== null).length)
 const progressPercent = computed(() => Math.round((respondidos.value / checklist.value.itens.length) * 100))
+
+onMounted(async () => {
+  if (!inspectionId.value) return
+
+  loading.value = true
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    const res = await axios.get(`${base}/inspecoes/${inspectionId.value}`)
+    const inspection = res.data
+
+    const [obraRes, checklistsRes] = await Promise.all([
+      axios.get(`${base}/obras/${inspection.obraId}`),
+      axios.get(`${base}/checklists`)
+    ])
+
+    const checklistData = checklistsRes.data.find(item => item.id === inspection.checklistId)
+    const itens = inspection.itens.map((item, index) => ({
+      numero: `Item ${index + 1}`,
+      descricao: item.descricao,
+      detalhe: checklistData?.itens?.[index] ? `Referência: ${checklistData.itens[index]}` : ''
+    }))
+
+    checklist.value = {
+      obra: obraRes.data.nome,
+      nome: checklistData ? checklistData.nome : 'Checklist',
+      itens
+    }
+
+    responses.value = inspection.itens.map(item => ({
+      conforme: item.conforme,
+      observacoes: item.observacoes || ''
+    }))
+
+    currentItemIndex.value = 0
+  } catch (error) {
+    console.error(error)
+    loadError.value = 'Não foi possível carregar a inspeção'
+  } finally {
+    loading.value = false
+  }
+})
 
 const nextItem = () => {
   if (currentItemIndex.value < checklist.value.itens.length - 1) {
@@ -168,23 +215,28 @@ const goToItem = (index) => {
   currentItemIndex.value = index
 }
 
-const finishInspection = () => {
+const finishInspection = async () => {
   if (respondidos.value < checklist.value.itens.length) {
     alert('Por favor, responda todos os itens antes de finalizar')
     return
   }
 
-  const conformes = responses.value.filter(r => r.conforme === true).length
-  const conformidade = Math.round((conformes / checklist.value.itens.length) * 100)
+  const inspecaoId = route.query.inspecao
+  const responsesPayload = responses.value.map((r, idx) => ({ index: idx, conforme: r.conforme, observacoes: r.observacoes }))
 
-  router.push({
-    name: 'relatorio',
-    params: {
-      id: Math.random().toString(36).substr(2, 9),
-      conformidade,
-      conformes,
-      naoConformes: checklist.value.itens.length - conformes
+  try {
+    if (inspecaoId) {
+      const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+      await axios.post(`${base}/inspecoes/${inspecaoId}/finish`, { responses: responsesPayload })
+      router.push({ name: 'relatorio', params: { id: inspecaoId } })
+    } else {
+      // fallback: navegar com dados locais
+      const conformes = responses.value.filter(r => r.conforme === true).length
+      router.push({ name: 'relatorio', params: { id: Math.random().toString(36).substr(2,9), conformidade: Math.round((conformes / checklist.value.itens.length) * 100), conformes } })
     }
-  })
+  } catch (err) {
+    console.error(err)
+    alert('Erro ao finalizar inspeção')
+  }
 }
 </script>
