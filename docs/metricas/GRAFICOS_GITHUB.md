@@ -99,13 +99,13 @@ node scripts/api-smoke-test.mjs
 | Issues de documentação | 10 |
 | Issues de teste | 6 |
 | Issues de correção | 1 |
-| Total de horas registradas na planilha | 108 h |
-| Horas Rafael | 57 h |
-| Horas Jhannyfer | 51 h |
-| Registros de trabalho na planilha | 32 |
-| Período de execução registrado | 01/04/2026 a 25/04/2026 |
-| Registros com retrabalho | 8 |
-| Horas de retrabalho | 25 h |
+| Total de horas registradas na planilha | 156 h |
+| Horas Rafael | 83 h |
+| Horas Jhannyfer | 73 h |
+| Registros de trabalho na planilha | 42 |
+| Período de execução registrado | 01/04/2026 a 19/05/2026 |
+| Registros com retrabalho | 9 |
+| Horas de retrabalho | 29 h |
 | Lead time médio das issues | 9,85 dias |
 | Kanban final | 48 itens em Concluído |
 | Smoke test da API | Aprovado |
@@ -220,29 +220,38 @@ O GitHub não mede horas trabalhadas diretamente. Por isso, a métrica de esfor�
 
 | Indicador | Resultado |
 |---|---:|
-| Total de horas registradas | 108 h |
-| Horas Rafael | 57 h |
-| Horas Jhannyfer | 51 h |
-| Registros de trabalho | 32 |
-| Período registrado | 01/04/2026 a 25/04/2026 |
-| Registros com retrabalho | 8 |
-| Horas de retrabalho | 25 h |
-| Percentual de horas em retrabalho | 23,1% |
+| Total de horas registradas | 156 h |
+| Horas Rafael | 83 h |
+| Horas Jhannyfer | 73 h |
+| Registros de trabalho | 42 |
+| Período registrado | 01/04/2026 a 19/05/2026 |
+| Período sem registros | 09/04/2026 a 17/04/2026 |
+| Registros com retrabalho | 9 |
+| Horas de retrabalho | 29 h |
+| Percentual de horas em retrabalho | 18,6% |
 
 ```mermaid
 xychart-beta
   title "Horas Trabalhadas por Integrante"
   x-axis ["Rafael", "Jhannyfer"]
-  y-axis "Horas" 0 --> 60
-  bar [57, 51]
+  y-axis "Horas" 0 --> 90
+  bar [83, 73]
 ```
 
 ```mermaid
 xychart-beta
   title "Horas Trabalhadas por Data"
-  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04"]
-  y-axis "Horas" 0 --> 9
-  bar [7, 6, 7, 8, 6, 6, 9, 5, 6, 9, 7, 9, 4, 7, 7, 5]
+  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04", "26/04", "27/04", "28/04", "29/04", "30/04", "01/05", "02/05", "03/05", "04/05", "05/05", "06/05", "07/05", "08/05", "09/05", "10/05", "11/05", "12/05", "13/05", "14/05", "15/05", "16/05", "17/05", "18/05", "19/05"]
+  y-axis "Horas" 0 --> 10
+  bar [7, 6, 7, 8, 5, 6, 8, 5, 6, 7, 6, 7, 4, 6, 6, 5, 4, 3, 4, 4, 3, 4, 3, 4, 4, 3, 4, 4, 3, 4, 5, 4, 3, 4, 3, 4, 5, 4, 4, 7]
+```
+
+```mermaid
+xychart-beta
+  title "Horas de Retrabalho por Área"
+  x-axis ["Docker", "Banco", "Frontend", "Integração", "Validação"]
+  y-axis "Horas" 0 --> 10
+  bar [6, 5, 7, 6, 5]
 ```
 
 ### Evidência complementar no GitHub
@@ -255,9 +264,13 @@ xychart-beta
 
 ### Interpretação
 
-O esforço foi distribuído de forma equilibrada: Rafael registrou 57 horas e Jhannyfer 51 horas. A diferença de 6 horas é pequena em relação ao total de 108 horas, indicando divisão de trabalho próxima entre os integrantes.
+### Interpretação
 
-As 25 horas de retrabalho representam 23,1% do esforço total. Isso indica que houve ajustes relevantes, principalmente em configuração, integração e correções de ambiente. O valor não necessariamente significa baixa qualidade; em um projeto com Docker, MySQL, backend e frontend integrados, parte do retrabalho é esperado durante estabilização.
+O esforço foi distribuído de forma equilibrada: Rafael registrou 83 horas e Jhannyfer 73 horas. A diferença entre os integrantes permaneceu pequena em relação ao total de 156 horas, indicando divisão relativamente equilibrada das atividades.
+
+As 29 horas de retrabalho representam 18,6% do esforço total. Isso indica que houve necessidade de ajustes principalmente em integração frontend/backend, configuração Docker, persistência e responsividade. Em projetos com múltiplas tecnologias integradas, parte desse retrabalho é esperado durante estabilização do ambiente e refinamento das funcionalidades.
+
+A planilha mostra que a execução real ocorreu entre 01/04/2026 e 19/05/2026, com interrupção entre 09/04/2026 e 17/04/2026 devido à indisponibilidade do equipamento utilizado pela equipe.
 
 ### Limitação
 
@@ -355,9 +368,9 @@ Todas as issues foram fechadas formalmente em 2026-05-19. Isso mostra que o fech
 ```mermaid
 xychart-beta
   title "Execução Real Registrada na Planilha"
-  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04"]
-  y-axis "Horas" 0 --> 9
-  line [7, 6, 7, 8, 6, 6, 9, 5, 6, 9, 7, 9, 4, 7, 7, 5]
+  x-axis ["01/04", "02/04", "03/04", "04/04", "05/04", "06/04", "07/04", "08/04", "18/04", "19/04", "20/04", "21/04", "22/04", "23/04", "24/04", "25/04", "26/04", "27/04", "28/04", "29/04", "30/04", "01/05", "02/05", "03/05", "04/05", "05/05", "06/05", "07/05", "08/05", "09/05", "10/05", "11/05", "12/05", "13/05", "14/05", "15/05", "16/05", "17/05", "18/05", "19/05"]
+  y-axis "Horas" 0 --> 10
+  line [7, 6, 7, 8, 5, 6, 8, 5, 6, 7, 6, 7, 4, 6, 6, 5, 4, 3, 4, 4, 3, 4, 3, 4, 4, 3, 4, 4, 3, 4, 5, 4, 3, 4, 3, 4, 5, 4, 4, 7]
 ```
 
 Essa separação é importante: **a data de fechamento da issue é um dado administrativo**, enquanto **a data da planilha representa o período real de execução**.
@@ -383,10 +396,10 @@ Throughput: quantidade de issues concluídas por período.
 | Indicador | Resultado |
 |---|---:|
 | Issues concluídas no GitHub | 48 |
-| Registros de trabalho na planilha | 32 |
-| Total de horas trabalhadas | 108 h |
-| Produtividade por esforço | 0,44 issues/h |
-| Média de horas por issue | 2,25 h/issue |
+| Registros de trabalho na planilha | 42 |
+| Total de horas trabalhadas | 156 h |
+| Produtividade por esforço | 0,31 issues/h |
+| Média de horas por issue | 3,25 h/issue |
 
 ### Interpretação
 
@@ -465,9 +478,9 @@ Estabilidade das entregas e necessidade de retrabalho.
 |---|---:|
 | Issues de teste | 6 |
 | Issue de correção formal | 1 |
-| Registros de retrabalho | 8 |
-| Horas de retrabalho | 25 h |
-| Smoke test final | Aprovado |
+| Registros de retrabalho na planilha | 9 |
+| Horas de retrabalho na planilha | 29 h |
+| Taxa de retrabalho por horas | 18,6% |
 | Falhas finais | 0 |
 
 ### Interpretação
@@ -773,7 +786,7 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 As métricas revelaram que o projeto teve escopo bem definido, organizado em 48 issues e 10 milestones. O backlog foi totalmente concluído e o Kanban terminou com 48 itens em **Concluído**.
 
-A planilha de horas complementou o GitHub e mostrou que a execução real ocorreu entre 01/04/2026 e 25/04/2026, com 108 horas registradas. Isso é importante porque o fechamento das issues no GitHub ocorreu em lote no dia 19/05/2026, mas os registros de esforço demonstram que o trabalho foi realizado ao longo do desenvolvimento.
+A planilha de horas complementou o GitHub e mostrou que a execução real ocorreu entre entre 01/04/2026 e 19/05/2026, com 156 horas registradas. Isso é importante porque o fechamento das issues no GitHub ocorreu em lote no dia 19/05/2026, mas os registros de esforço demonstram que o trabalho foi realizado ao longo do desenvolvimento.
 
 A métrica mais relevante para o projeto foi a combinação entre issues por milestone e horas trabalhadas, pois ela mostrou tanto o tamanho do escopo quanto o esforço real aplicado. Para o processo, o smoke test foi a evidência mais importante, porque validou que o sistema não ficou apenas visual: o fluxo principal funciona com persistência real em MySQL.
 
@@ -790,55 +803,3 @@ Para projetos futuros, a equipe deve:
 De forma geral, o grupo evoluiu na compreensão de que métricas não são apenas números. Elas precisam ser interpretadas e usadas para explicar decisões, riscos e melhorias no projeto.
 
 ---
-
-# PARTE 6 - ROTEIRO DE APRESENTAÇÃO
-
-Tempo sugerido: 20 a 30 minutos.
-
-| Parte | Tempo | Quem pode apresentar | Conteúdo |
-|---|---:|---|---|
-| Contexto do projeto | 3 min | Rafael ou Jhannyfer | O que é o PadrãoCerto |
-| Métricas de projeto | 8 min | Rafael | tamanho, esforço, prazo, produtividade, qualidade |
-| Métricas de processo | 6 min | Jhannyfer | qualidade, desempenho e produtividade do processo |
-| Métricas de produto | 6 min | Rafael ou Jhannyfer | usabilidade, confiabilidade e desempenho |
-| Considerações finais | 4 min | Ambos | limitações, decisões e aprendizados |
-
----
-
-## 24. Fala Sugerida - Abertura
-
-> Nosso projeto é o PadrãoCerto, um sistema web para registrar e acompanhar inspeções de qualidade em obras. Usamos Vue no frontend, Node e Express no backend, MySQL com Sequelize para persistência e Docker para padronizar o ambiente. A gestão foi feita com GitHub Issues, Milestones e Kanban. A partir desses dados, aplicamos métricas de projeto, processo e produto.
-
----
-
-## 25. Fala Sugerida - Métricas de Projeto
-
-> Para tamanho e trabalho, usamos a quantidade de issues e milestones. O projeto teve 48 issues distribuídas em 10 milestones. Isso foi adequado porque cada issue representava uma funcionalidade, teste, ajuste ou documentação. O backlog foi 100% concluído, o que mostra que o escopo do MVP foi controlado.
-
-> Para esforço, usamos a planilha de horas. Ela registra 108 horas de trabalho entre 01 de abril e 25 de abril, sendo 57 horas de Rafael e 51 horas de Jhannyfer. Isso mostra que o esforço foi distribuído de forma equilibrada na equipe.
-
-> Para prazo, calculamos o lead time médio das issues, que ficou em aproximadamente 9,85 dias. Porém, observamos uma limitação: muitas issues foram fechadas no GitHub no mesmo dia. Por isso, separamos fechamento formal das issues e execução real registrada na planilha. A planilha mostra que o trabalho aconteceu ao longo de abril, não apenas no dia de fechamento do GitHub.
-
----
-
-## 26. Fala Sugerida - Métricas de Processo
-
-> No processo, avaliamos qualidade, desempenho e produtividade. A principal evidência de qualidade foi o smoke test automatizado, que executa o fluxo completo: cadastro, obra, checklist, vínculo, inspeção, finalização, relatório e dashboard. O teste passou sem falhas, indicando que o processo gerou uma entrega funcional.
-
-> Também observamos 25 horas de retrabalho registradas na planilha. Esse retrabalho ocorreu principalmente em ajustes de ambiente, integração e responsividade. A leitura que fazemos é que houve instabilidade normal de integração, mas ela foi corrigida antes da entrega final.
-
-> O Kanban terminou com 48 itens em Concluído. Isso mostra conclusão do trabalho, mas também aprendemos que o ideal seria movimentar as issues ao longo do desenvolvimento para melhorar métricas como cycle time.
-
----
-
-## 27. Fala Sugerida - Métricas de Produto
-
-> Para produto, escolhemos usabilidade, confiabilidade e desempenho. Em usabilidade, fizemos ajustes como mensagens de feedback, validação de formulários e responsividade. Em confiabilidade, validamos o fluxo principal com smoke test e tivemos 100% de sucesso nas operações testadas. Em desempenho, confirmamos que a API responde no Docker e que o banco está conectado, mas reconhecemos que uma melhoria futura seria medir latência por endpoint.
-
----
-
-## 28. Fala Sugerida - Fechamento
-
-> A principal conclusão é que as métricas ajudaram a transformar o acompanhamento do projeto em algo mais objetivo. Elas mostraram que o escopo foi concluído, que o fluxo principal funciona e que a equipe conseguiu organizar o trabalho em milestones. Ao mesmo tempo, revelaram limitações na coleta, principalmente em horas trabalhadas e movimentação contínua do Kanban. Para próximos projetos, a equipe deve registrar dados de forma mais frequente para obter métricas mais precisas.
-
-> Um ponto importante é que o GitHub sozinho não conta toda a história. Ele mostra a conclusão formal das issues, mas a planilha mostra o esforço real ao longo do tempo. Usando as duas fontes juntas, conseguimos explicar melhor o andamento do projeto.

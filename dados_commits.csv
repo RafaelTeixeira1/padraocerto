@@ -1,0 +1,29 @@
+97f4086;rafaelTeixeira1;2026-05-19;refactor(#42): centralizar configuracao da API no frontend
+768cb73;rafaelTeixeira1;2026-05-19;feat(#40 #41): adicionar feedback visual e layout responsivo
+938159e;rafaelTeixeira1;2026-05-19;docs(#46 #47 #48): registrar metricas analise e evidencias
+477a485;rafaelTeixeira1;2026-05-19;test(#17 #25 #29 #34 #38 #43): adicionar smoke test de API persistente
+d2490cf;rafaelTeixeira1;2026-05-19;docs(#44 #45): documentar execucao Docker e persistencia
+9741943;rafaelTeixeira1;2026-05-19;feat(#28 #30 #31 #32 #33 #35): consolidar fluxo de inspecao persistente
+7a2d31e;rafaelTeixeira1;2026-05-19;feat(#22 #24 #26 #36): conectar CRUD e dashboard ao banco
+df13151;rafaelTeixeira1;2026-05-19;feat(#18 #19 #20 #21): integrar autenticacao persistente no frontend
+6e25235;rafaelTeixeira1;2026-05-19;feat(#14 #15 #16 #17): persistir dominio com Sequelize e MySQL
+c07bcbc;rafaelTeixeira1;2026-05-19;fix: ajustar bootstrap do frontend e travar dependencias
+fecb379;rafaelTeixeira1;2026-05-19;feat(#31 #32 #33 #35 #39): executar inspeção e gerar relatório
+a4a7aec;rafaelTeixeira1;2026-05-19;feat(#28 #30): vincular checklist e iniciar inspeção
+f6d969a;rafaelTeixeira1;2026-05-19;feat(#23 #24 #26 #27 #36 #37): integrar obras, checklists e dashboard
+a48255f;rafaelTeixeira1;2026-05-19;feat(#26 #28 #30 #31 #32 #33 #35): adicionar APIs de checklist e inspeção
+78a83e6;rafaelTeixeira1;2026-05-19;fix: convert postcss.config.js to ES module format
+22d7321;rafaelTeixeira1;2026-05-19;fix: correct all Vue 3 <script setup> syntax errors
+539b43e;rafaelTeixeira1;2026-05-19;fix: correct Obras.vue template syntax
+859f2a6;rafaelTeixeira1;2026-05-19;fix: correct ObraDetail component template syntax
+d5b1af7;rafaelTeixeira1;2026-05-19;feat: implement modal components and integrate into pages
+7058eb2;rafaelTeixeira1;2026-05-19;fix: correct Tailwind CSS and PostCSS configuration
+c619775;rafaelTeixeira1;2026-05-19;chore: setup Tailwind CSS configuration for frontend
+4908869;rafaelTeixeira1;2026-05-19;refactor: convert utility components to Tailwind CSS
+96f12d0;rafaelTeixeira1;2026-05-19;feat: refactor all frontend pages and components to match React design (issues #6, #7, #8)
+e8b84d8;rafaelTeixeira1;2026-05-19;docs: salvar referência de UI em React para transformar em Vue
+80fbb8c;rafaelTeixeira1;2026-05-19;feat: setup frontend com componentes, rotas e layout (issues #6, #7, #8)
+aef4a50;rafaelTeixeira1;2026-05-19;docs: estrutura de referência, critérios e métricas (issues #2, #4, #5)
+27a0ab1;rafaelTeixeira1;2026-05-19;docs: registrar escopo mínimo do sistema
+df051ce;rafaelTeixeira1;2026-05-09;chore: configurar estrutura inicial do projeto com docker
+b146c46;rafaelTeixeira1;2026-05-09;chore: estrutura inicial do projeto
