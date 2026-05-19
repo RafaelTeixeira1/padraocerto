@@ -171,6 +171,7 @@ import { computed, ref, onMounted } from 'vue'
 import { Button } from '../components/ui'
 import { NewObraModal, NewChecklistModal } from '../components/modals'
 import axios from 'axios'
+import { showFeedback } from '../utils/feedback'
 
 const showNewObraModal = ref(false)
 const showNewChecklistModal = ref(false)
@@ -216,8 +217,10 @@ const handleNewObra = async (formData) => {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
     await axios.post(`${base}/obras`, formData)
     await loadData()
+    showFeedback({ title: 'Obra criada', message: 'Dashboard atualizado com dados reais.' })
   } catch (error) {
     console.error(error)
+    showFeedback({ type: 'error', title: 'Erro ao criar obra', message: error.response?.data?.error || 'Tente novamente.' })
   } finally {
     showNewObraModal.value = false
   }
@@ -227,8 +230,10 @@ const handleNewChecklist = async (formData) => {
   try {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
     await axios.post(`${base}/checklists`, formData)
+    showFeedback({ title: 'Checklist criado', message: 'Modelo disponível para vínculo com obras.' })
   } catch (error) {
     console.error(error)
+    showFeedback({ type: 'error', title: 'Erro ao criar checklist', message: error.response?.data?.error || 'Tente novamente.' })
   } finally {
     showNewChecklistModal.value = false
   }

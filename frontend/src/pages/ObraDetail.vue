@@ -163,6 +163,7 @@ import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 import { Button } from '../components/ui'
 import { NewObraModal, VincularChecklistModal } from '../components/modals'
+import { showFeedback } from '../utils/feedback'
 
 const route = useRoute()
 const obraId = route.params.id
@@ -211,6 +212,7 @@ const startInspection = (checklistId) => {
 const handleVincularChecklist = async () => {
   await loadObra()
   showVincularModal.value = false
+  showFeedback({ title: 'Checklist vinculado', message: 'A obra já pode iniciar inspeções com este modelo.' })
 }
 
 const deleteObra = async () => {
@@ -220,10 +222,12 @@ const deleteObra = async () => {
 
   try {
     await axios.delete(`/obras/${obraId}`)
+    showFeedback({ title: 'Obra removida', message: 'A listagem foi atualizada.' })
     router.push('/obras')
   } catch (error) {
     console.error(error)
     loadError.value = error.response?.data?.error || 'Não foi possível remover a obra'
+    showFeedback({ type: 'error', title: 'Erro ao remover obra', message: loadError.value })
   }
 }
 
@@ -232,9 +236,11 @@ const handleEditObra = async (formData) => {
     await axios.put(`/obras/${obraId}`, { ...formData, status: obra.value.status })
     showEditModal.value = false
     await loadObra()
+    showFeedback({ title: 'Obra atualizada', message: 'As informações foram salvas no banco.' })
   } catch (error) {
     console.error(error)
     loadError.value = error.response?.data?.error || 'Não foi possível editar a obra'
+    showFeedback({ type: 'error', title: 'Erro ao editar obra', message: loadError.value })
   }
 }
 </script>

@@ -130,6 +130,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import { Button } from '../components/ui'
+import { showFeedback } from '../utils/feedback'
 
 const router = useRouter()
 const route = useRoute()
@@ -234,13 +235,14 @@ const finishInspection = async () => {
     if (inspecaoId) {
       const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
       await axios.post(`${base}/inspecoes/${inspecaoId}/finish`, { responses: responsesPayload })
+      showFeedback({ title: 'Inspeção finalizada', message: 'Relatório gerado com a conformidade calculada.' })
       router.push({ name: 'relatorio', params: { id: inspecaoId } })
     } else {
       alert('Inspeção não informada')
     }
   } catch (err) {
     console.error(err)
-    alert(err.response?.data?.error || 'Erro ao finalizar inspeção')
+    showFeedback({ type: 'error', title: 'Erro ao finalizar inspeção', message: err.response?.data?.error || 'Tente novamente.' })
   }
 }
 </script>

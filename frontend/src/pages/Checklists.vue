@@ -117,6 +117,7 @@ import { computed, onMounted, ref } from 'vue'
 import axios from 'axios'
 import { Button } from '../components/ui'
 import { NewChecklistModal } from '../components/modals'
+import { showFeedback } from '../utils/feedback'
 
 const checklists = ref([])
 const searchQuery = ref('')
@@ -175,8 +176,13 @@ const handleSaveChecklist = async (formData) => {
     }
     await loadChecklists()
     selectedChecklist.value = null
+    showFeedback({
+      title: formData.id ? 'Checklist atualizado' : 'Checklist criado',
+      message: 'As alterações foram persistidas no banco.'
+    })
   } catch (error) {
     console.error(error)
+    showFeedback({ type: 'error', title: 'Erro ao salvar checklist', message: error.response?.data?.error || 'Tente novamente.' })
   } finally {
     closeChecklistModal()
   }
@@ -192,9 +198,10 @@ const deleteChecklist = async (checklist) => {
     await axios.delete(`${base}/checklists/${checklist.id}`)
     selectedChecklist.value = null
     await loadChecklists()
+    showFeedback({ title: 'Checklist excluído', message: 'O modelo foi removido com sucesso.' })
   } catch (error) {
     console.error(error)
-    alert(error.response?.data?.error || 'Não foi possível excluir o checklist')
+    showFeedback({ type: 'error', title: 'Erro ao excluir checklist', message: error.response?.data?.error || 'Não foi possível excluir o checklist' })
   }
 }
 </script>

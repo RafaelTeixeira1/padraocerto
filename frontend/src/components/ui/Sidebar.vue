@@ -1,5 +1,5 @@
 <template>
-  <aside class="fixed left-0 top-0 h-screen w-64 bg-sidebar text-sidebar-foreground flex flex-col shadow-xl z-50">
+  <aside class="fixed left-0 top-0 h-screen w-64 bg-sidebar text-sidebar-foreground hidden flex-col shadow-xl z-50 md:flex">
     <!-- Logo -->
     <div class="p-6 border-b border-sidebar-border">
       <div class="flex items-center gap-3">

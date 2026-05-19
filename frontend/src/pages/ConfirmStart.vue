@@ -24,6 +24,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
+import { showFeedback } from '../utils/feedback'
 
 const route = useRoute()
 const router = useRouter()
@@ -63,6 +64,7 @@ const confirmStart = async () => {
       responsavel: responsavel.value
     })
     const inspecao = res.data
+    showFeedback({ title: 'Inspeção iniciada', message: 'Responda todos os itens para finalizar.' })
     router.push(`/obras/${obraId}/checklist/${checklistId}/responder?inspecao=${inspecao.id}`)
   } catch (err) {
     console.error(err)
@@ -72,6 +74,7 @@ const confirmStart = async () => {
     }
 
     errorMessage.value = err.response?.data?.error || 'Erro ao iniciar inspeção'
+    showFeedback({ type: 'error', title: 'Erro ao iniciar inspeção', message: errorMessage.value })
   } finally {
     loading.value = false
   }

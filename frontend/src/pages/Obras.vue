@@ -116,6 +116,7 @@ import { ref, computed, onMounted } from 'vue'
 import { Button } from '../components/ui'
 import { NewObraModal } from '../components/modals'
 import axios from 'axios'
+import { showFeedback } from '../utils/feedback'
 
 const searchQuery = ref('')
 const filterStatus = ref('')
@@ -157,8 +158,10 @@ const handleNewObra = async (formData) => {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
     await axios.post(`${base}/obras`, formData)
     await loadObras()
+    showFeedback({ title: 'Obra criada', message: 'A obra foi salva no banco de dados.' })
   } catch (error) {
     console.error(error)
+    showFeedback({ type: 'error', title: 'Erro ao criar obra', message: error.response?.data?.error || 'Tente novamente.' })
   } finally {
     showNewObraModal.value = false
   }
