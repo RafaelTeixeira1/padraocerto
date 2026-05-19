@@ -510,15 +510,15 @@ Lead time.
 xychart-beta
   title "Lead Time das Issues"
   x-axis ["Mínimo", "Médio", "Máximo"]
-  y-axis "Dias" 0 --> 10
-  bar [9.30, 9.85, 9.91]
+  y-axis "Dias" 0 --> 50
+  bar [7, 18.4, 48]
 ```
 
 | Indicador | Dias |
 |---|---:|
-| Lead time mínimo | 9,30 |
-| Lead time médio | 9,85 |
-| Lead time máximo | 9,91 |
+| Lead time mínimo | 7 |
+| Lead time médio | 18,4 |
+| Lead time máximo | 48 |
 
 ### Interpretação
 
