@@ -664,22 +664,21 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 ## 20. Considerações Finais
 
-As métricas revelaram que o projeto teve escopo bem definido, organizado em 48 issues e 10 milestones. O backlog foi totalmente concluído e o Kanban terminou com 48 itens em **Concluído**.
+As métricas analisadas revelaram que o projeto apresentou escopo bem definido, organizado em 48 issues distribuídas em 10 milestones. O backlog planejado foi totalmente concluído e o Kanban finalizou com todas as atividades registradas como concluídas.
 
-A planilha de horas complementou o GitHub e mostrou que a execução real ocorreu entre entre 01/04/2026 e 19/05/2026, com 156 horas registradas. Isso é importante porque o fechamento das issues no GitHub ocorreu em lote no dia 19/05/2026, mas os registros de esforço demonstram que o trabalho foi realizado ao longo do desenvolvimento.
+A planilha de horas complementou as informações do GitHub e demonstrou que a execução prática ocorreu entre 01/04/2026 e 19/05/2026, totalizando 156 horas registradas. Embora o encerramento formal das issues tenha sido consolidado no GitHub em 19/05/2026, os registros de esforço evidenciam que o desenvolvimento ocorreu de forma incremental ao longo do período.
 
-A métrica mais relevante para o projeto foi a combinação entre issues por milestone e horas trabalhadas, pois ela mostrou tanto o tamanho do escopo quanto o esforço real aplicado. Para o processo, o smoke test foi a evidência mais importante, porque validou que o sistema não ficou apenas visual: o fluxo principal funciona com persistência real em MySQL.
+A combinação entre milestones, issues e horas trabalhadas foi a métrica mais relevante para análise do projeto, pois permitiu relacionar tamanho do escopo, esforço aplicado e evolução das funcionalidades implementadas.
 
-O uso de métricas também mostrou limitações. Como várias issues foram fechadas no mesmo dia, métricas como throughput semanal, lead time e cycle time ficaram menos precisas para representar o andamento real apenas pelo GitHub. A planilha corrigiu parte dessa limitação ao registrar datas e horas efetivas de trabalho.
+Nas métricas de processo, o smoke test apresentou grande importância como evidência de validação funcional, demonstrando que o sistema não permaneceu apenas em nível visual, mas executou corretamente o fluxo principal com persistência real em MySQL.
 
-Para projetos futuros, a equipe deve:
+A análise das métricas também evidenciou limitações do processo adotado. Como diversas issues foram encerradas administrativamente no mesmo período, métricas como throughput, lead time e cycle time perderam parte da precisão quando analisadas exclusivamente pelo GitHub. Nesse contexto, a planilha de horas foi fundamental para complementar a interpretação do andamento real do desenvolvimento.
 
-1. Registrar horas trabalhadas por issue desde o início.
-2. Atualizar o Kanban durante o desenvolvimento, e não apenas no final.
-3. Medir tempo real de resposta da API.
-4. Fazer testes de usabilidade com usuários.
-5. Manter smoke tests automatizados como evidência mínima de confiabilidade.
+Para projetos futuros, a equipe identificou oportunidades de melhoria, como:
+- registrar horas diretamente por issue desde o início do projeto;
+- atualizar o Kanban continuamente durante o desenvolvimento;
+- medir tempo real de resposta da API;
+- realizar testes de usabilidade com usuários;
+- automatizar smoke tests e validações básicas do sistema.
 
-De forma geral, o grupo evoluiu na compreensão de que métricas não são apenas números. Elas precisam ser interpretadas e usadas para explicar decisões, riscos e melhorias no projeto.
-
----
+De forma geral, o projeto contribuiu significativamente para a compreensão prática sobre métricas de software, demonstrando que métricas não devem ser utilizadas apenas como números isolados, mas como ferramentas para interpretar esforço, qualidade, riscos, limitações e evolução do desenvolvimento.
