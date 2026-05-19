@@ -366,7 +366,7 @@ xychart-beta
 
 ### Interpretação
 
-Todas as issues foram fechadas formalmente em 2026-05-19. Isso mostra que o fechamento no GitHub foi concentrado no final. No entanto, a planilha de horas demonstra que o trabalho não foi feito de última hora: houve registros distribuídos entre 01/04 e 25/04.
+Todas as issues foram consolidadas e fechadas formalmente no GitHub em 19/05/2026. Isso mostra que o encerramento administrativo do Kanban foi concentrado na etapa final do projeto. No entanto, a planilha de horas demonstra que a execução prática ocorreu de forma distribuída entre 01/04/2026 e 19/05/2026, com registros contínuos de desenvolvimento, integração, testes e ajustes ao longo do período.
 
 ```mermaid
 xychart-beta
