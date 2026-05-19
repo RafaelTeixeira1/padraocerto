@@ -17,7 +17,6 @@ Apresentar como as métricas foram definidas, coletadas, registradas e interpret
 
 - Métricas de projeto
 - Métricas de processo
-- Métricas de produto
 - Considerações finais
 
 O foco da apresentação não é apenas mostrar números, mas explicar o que eles revelam sobre planejamento, execução, qualidade e decisões tomadas pela equipe.
