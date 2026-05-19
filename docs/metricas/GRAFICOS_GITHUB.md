@@ -3,8 +3,7 @@
 **Disciplina**: Métricas de Software - 7º Período  
 **Professor**: Paulo Henrique Araujo  
 **Curso**: Sistemas de Informação - IF Goiano Ceres  
-**Alunos**: Rafael de S. Teixeira e Jhannyfer S. R. Biângulo  
-**Data da coleta**: 2026-05-19  
+**Alunos**: Rafael de S. Teixeira e Jhannyfer S. R. Biângulo   
 **Fontes principais**: GitHub Issues, Milestones, Project/Kanban, commits, smoke test da API e planilha de horas  
 **Repositório**: `RafaelTeixeira1/padraocerto`
 
