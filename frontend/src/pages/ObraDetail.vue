@@ -185,9 +185,22 @@ const obra = ref({
 
 const startInspection = (checklistId) => {
   const checklist = obra.value.checklists.find(c => c.id === checklistId)
+  if (checklist) {
+    // Navegar para a página de responder checklist
+    // router.push(`/obras/${obraId}/checklist/${checklistId}/responder`)
+  }
 }
 
 const handleVincularChecklist = (formData) => {
+  const checklist = {
+    id: formData.checklistId,
+    nome: 'Novo Checklist',
+    itens: 15,
+    data: new Date().toLocaleDateString('pt-BR')
+  }
+  if (!obra.value.checklists.find(c => c.id === checklist.id)) {
+    obra.value.checklists.push(checklist)
+  }
   showVincularModal.value = false
 }
 </script>

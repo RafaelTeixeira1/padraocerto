@@ -11,8 +11,8 @@
       :disabled="disabled"
       class="w-full px-4 py-3 bg-input-background border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring transition-all"
       :class="{ 'border-destructive': error }"
-      @input="$emit('update:modelValue', $event.target.value)"
-      @blur="$emit('blur')"
+      @input="emit('update:modelValue', $event.target.value)"
+      @blur="emit('blur')"
     />
     <p v-if="error" class="mt-1 text-sm text-destructive">{{ error }}</p>
   </div>
@@ -34,7 +34,7 @@ const props = defineProps({
   disabled: Boolean
 })
 
-defineEmits(['update:modelValue', 'blur'])
+const emit = defineEmits(['update:modelValue', 'blur'])
 
 const id = computed(() => `input-${Math.random().toString(36).substr(2, 9)}`)
 </script>

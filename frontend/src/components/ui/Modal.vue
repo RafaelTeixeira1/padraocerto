@@ -1,13 +1,13 @@
 <template>
   <Teleport to="body">
     <transition name="modal">
-      <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click.self="$emit('close')">
+      <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click.self="emit('close')">
         <div class="bg-card rounded-xl shadow-2xl min-w-96 max-w-2xl max-h-[90vh] overflow-y-auto border border-border">
           <div class="flex justify-between items-center p-6 border-b border-border">
             <h2 class="text-xl font-semibold text-foreground">{{ title }}</h2>
             <button
               v-if="closeButton"
-              @click="$emit('close')"
+              @click="emit('close')"
               aria-label="Fechar"
               class="text-muted-foreground hover:text-foreground transition-colors text-2xl font-light leading-none"
             >
@@ -33,7 +33,7 @@ defineProps({
   closeButton: { type: Boolean, default: true }
 })
 
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 </script>
 
 <style scoped>

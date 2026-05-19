@@ -3,7 +3,7 @@
     <div class="max-w-4xl mx-auto p-6">
       <!-- Header -->
       <div class="mb-8">
-        <button @click="$router.back()" class="text-secondary hover:underline mb-4">← Voltar</button>
+        <button @click="router.back()" class="text-secondary hover:underline mb-4">← Voltar</button>
         <h1 class="text-3xl font-bold text-foreground mb-2">Inspeção em Andamento</h1>
         <p class="text-muted-foreground">{{ checklist.obra }} • {{ checklist.nome }}</p>
       </div>
@@ -123,7 +123,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Button } from '../components/ui'
 

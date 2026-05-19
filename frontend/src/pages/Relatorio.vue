@@ -3,7 +3,7 @@
     <div class="max-w-4xl mx-auto">
       <!-- Header -->
       <div class="mb-8">
-        <button @click="$router.back()" class="text-secondary hover:underline mb-4">← Voltar</button>
+        <button @click="router.back()" class="text-secondary hover:underline mb-4">← Voltar</button>
       </div>
 
       <!-- Success Status -->
@@ -143,7 +143,7 @@
 
       <!-- Actions -->
       <div class="flex gap-3 justify-center">
-        <Button variant="outline" @click="$router.push('/')">
+        <Button variant="outline" @click="router.push('/')">
           Voltar ao Dashboard
         </Button>
         <Button variant="secondary" @click="startNewInspection">

@@ -1,5 +1,5 @@
 <template>
-  <Modal :open="open" title="Vincular Checklist" @close="$emit('close')">
+  <Modal :open="open" title="Vincular Checklist" @close="emit('close')">
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <div>
         <label for="checklist" class="block text-sm font-medium text-foreground mb-2">
@@ -38,7 +38,7 @@
     </form>
 
     <template #footer>
-      <Button @click="$emit('close')" variant="outline">Cancelar</Button>
+      <Button @click="emit('close')" variant="outline">Cancelar</Button>
       <Button @click="handleSubmit" variant="primary" :loading="loading">Vincular</Button>
     </template>
   </Modal>

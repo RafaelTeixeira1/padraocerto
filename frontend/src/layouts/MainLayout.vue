@@ -21,7 +21,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { Navbar, Sidebar, Button } from '../components/ui'
+import { Navbar, Sidebar } from '../components/ui'
 
 const router = useRouter()
 

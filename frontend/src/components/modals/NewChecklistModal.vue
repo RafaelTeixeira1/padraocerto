@@ -1,5 +1,5 @@
 <template>
-  <Modal :open="open" title="Novo Checklist" @close="$emit('close')">
+  <Modal :open="open" title="Novo Checklist" @close="emit('close')">
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <Input
         v-model="form.nome"
@@ -55,7 +55,7 @@
     </form>
 
     <template #footer>
-      <Button @click="$emit('close')" variant="outline">Cancelar</Button>
+      <Button @click="emit('close')" variant="outline">Cancelar</Button>
       <Button @click="handleSubmit" variant="primary" :loading="loading">Criar Checklist</Button>
     </template>
   </Modal>

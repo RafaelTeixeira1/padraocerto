@@ -9,7 +9,7 @@
       className
     ]"
     :disabled="disabled || loading"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <span v-if="loading" class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></span>
     <slot />
@@ -36,7 +36,7 @@ const props = defineProps({
   className: String
 })
 
-defineEmits(['click'])
+const emit = defineEmits(['click'])
 
 const variantClass = computed(() => {
   const variants = {
