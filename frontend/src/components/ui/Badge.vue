@@ -1,11 +1,13 @@
 <template>
-  <span class="badge" :class="`badge-${variant} badge-${size}`">
+  <span :class="[sizeClasses, variantClasses]" class="inline-block rounded-full font-semibold whitespace-nowrap">
     <slot />
   </span>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   variant: {
     type: String,
     default: 'info',
@@ -17,43 +19,18 @@ defineProps({
     validator: (v) => ['sm', 'md'].includes(v)
   }
 })
+
+const sizeClasses = computed(() => {
+  return props.size === 'sm' ? 'px-2 py-0.5 text-xs' : 'px-3 py-1 text-sm'
+})
+
+const variantClasses = computed(() => {
+  const variants = {
+    success: 'bg-green-100 text-green-800',
+    warning: 'bg-yellow-100 text-yellow-800',
+    danger: 'bg-red-100 text-red-800',
+    info: 'bg-blue-100 text-blue-800'
+  }
+  return variants[props.variant]
+})
 </script>
-
-<style scoped>
-.badge {
-  display: inline-block;
-  border-radius: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.badge-sm {
-  padding: 2px 8px;
-  font-size: 11px;
-}
-
-.badge-md {
-  padding: 4px 12px;
-  font-size: 12px;
-}
-
-.badge-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.badge-warning {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.badge-danger {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.badge-info {
-  background-color: #d1ecf1;
-  color: #0c5460;
-}
-</style>

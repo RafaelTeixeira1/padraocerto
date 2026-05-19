@@ -1,7 +1,12 @@
 <template>
-  <div class="progress-container">
-    <div class="progress-bar" :style="{ width: `${value}%`, backgroundColor: progressColor }"></div>
-    <span v-if="showLabel" class="progress-label">{{ value }}%</span>
+  <div class="relative w-full h-6 bg-muted rounded-full overflow-hidden flex items-center">
+    <div
+      class="h-full transition-all duration-300 rounded-full"
+      :style="{ width: `${value}%`, backgroundColor: progressColor }"
+    ></div>
+    <span v-if="showLabel" class="absolute w-full text-center font-semibold text-xs text-foreground">
+      {{ value }}%
+    </span>
   </div>
 </template>
 
@@ -20,35 +25,8 @@ const props = defineProps({
 
 const progressColor = computed(() => {
   if (props.color) return props.color
-  if (props.value >= 80) return '#28a745'
-  if (props.value >= 50) return '#ffc107'
-  return '#dc3545'
+  if (props.value >= 80) return '#10b981'
+  if (props.value >= 50) return '#f59e0b'
+  return '#ef4444'
 })
 </script>
-
-<style scoped>
-.progress-container {
-  position: relative;
-  width: 100%;
-  height: 24px;
-  background-color: #e9ecef;
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-.progress-bar {
-  height: 100%;
-  transition: width 0.3s ease;
-}
-
-.progress-label {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  font-weight: 600;
-  font-size: 12px;
-  color: #333;
-}
-</style>
