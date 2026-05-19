@@ -1,14 +1,16 @@
 <template>
-  <div class="layout">
-    <Navbar :title="'PadrãoCerto'" :user="currentUser">
-      <template #actions>
-        <Button size="sm" @click="handleLogout">Logout</Button>
-      </template>
-    </Navbar>
-    <div class="layout-body">
+  <div class="min-h-screen bg-background">
+    <!-- Navbar -->
+    <Navbar :user="currentUser" />
+
+    <!-- Main Content -->
+    <div class="flex">
+      <!-- Sidebar -->
       <Sidebar :items="navItems" :active="$route.path" />
-      <main class="content">
-        <div class="content-inner">
+
+      <!-- Content Area -->
+      <main class="flex-1 ml-64 pt-16 overflow-y-auto">
+        <div class="min-h-screen">
           <router-view />
         </div>
       </main>
@@ -24,7 +26,8 @@ import { Navbar, Sidebar, Button } from '../components/ui'
 const router = useRouter()
 
 const currentUser = computed(() => ({
-  name: localStorage.getItem('userName') || 'Usuário'
+  name: localStorage.getItem('userName') || 'Usuário',
+  email: 'user@padraocerto.com'
 }))
 
 const navItems = [
@@ -32,60 +35,4 @@ const navItems = [
   { label: 'Obras', icon: '🏗️', path: '/obras' },
   { label: 'Checklists', icon: '✅', path: '/checklists' }
 ]
-
-const handleLogout = () => {
-  localStorage.removeItem('session')
-  localStorage.removeItem('userName')
-  router.push('/login')
-}
 </script>
-
-<style scoped>
-.layout {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  grid-template-rows: 60px 1fr;
-  height: 100vh;
-  width: 100%;
-}
-
-.navbar-wrapper {
-  grid-column: 1 / -1;
-  grid-row: 1;
-}
-
-.layout-body {
-  grid-row: 2;
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 250px 1fr;
-}
-
-.content {
-  grid-column: 2;
-  overflow-y: auto;
-  background-color: #f5f5f5;
-}
-
-.content-inner {
-  padding: 24px;
-}
-
-@media (max-width: 768px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    display: none;
-  }
-
-  .layout-body {
-    grid-template-columns: 1fr;
-  }
-
-  .content {
-    grid-column: 1;
-  }
-}
-</style>

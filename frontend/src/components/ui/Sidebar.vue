@@ -1,90 +1,70 @@
 <template>
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h1 class="sidebar-logo">PadrãoCerto</h1>
+  <aside class="fixed left-0 top-0 h-screen w-64 bg-sidebar text-sidebar-foreground flex flex-col shadow-xl z-50">
+    <!-- Logo -->
+    <div class="p-6 border-b border-sidebar-border">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-sidebar-primary rounded-lg flex items-center justify-center text-lg">
+          🏗️
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-sidebar-foreground">PadrãoCerto</h1>
+          <p class="text-xs text-sidebar-foreground/70">Gestão de Qualidade</p>
+        </div>
+      </div>
     </div>
-    <nav class="sidebar-nav">
-      <router-link
-        v-for="item in items"
-        :key="item.path"
-        :to="item.path"
-        class="sidebar-item"
-        :class="{ active: active === item.path }"
-      >
-        <span class="sidebar-icon">{{ item.icon }}</span>
-        <span class="sidebar-label">{{ item.label }}</span>
-      </router-link>
+
+    <!-- Navigation -->
+    <nav class="flex-1 p-4">
+      <ul class="space-y-2">
+        <li v-for="item in items" :key="item.path">
+          <router-link
+            :to="item.path"
+            class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors"
+            :class="{
+              'bg-sidebar-accent text-sidebar-accent-foreground': active === item.path,
+              'hover:bg-sidebar-accent/50': active !== item.path
+            }"
+          >
+            <span class="text-lg">{{ item.icon }}</span>
+            <span class="text-sm font-medium">{{ item.label }}</span>
+          </router-link>
+        </li>
+      </ul>
     </nav>
+
+    <!-- Logout -->
+    <div class="p-4 border-t border-sidebar-border">
+      <button
+        @click="handleLogout"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-sidebar-accent/50 transition-colors text-sidebar-foreground"
+      >
+        <span class="text-lg">🚪</span>
+        <span class="text-sm font-medium">Sair</span>
+      </button>
+    </div>
   </aside>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 defineProps({
   items: {
     type: Array,
-    default: () => []
+    default: () => [
+      { label: 'Dashboard', icon: '📊', path: '/' },
+      { label: 'Obras', icon: '🏗️', path: '/obras' },
+      { label: 'Checklists', icon: '✅', path: '/checklists' }
+    ]
   },
   active: String
 })
+
+const handleLogout = () => {
+  localStorage.removeItem('session')
+  localStorage.removeItem('userName')
+  router.push('/login')
+}
 </script>
-
-<style scoped>
-.sidebar {
-  width: 250px;
-  background-color: #2c3e50;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.sidebar-header {
-  padding: 20px;
-  border-bottom: 1px solid #34495e;
-}
-
-.sidebar-logo {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: white;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 0;
-}
-
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  color: #bdc3c7;
-  text-decoration: none;
-  transition: all 0.2s;
-  border-left: 3px solid transparent;
-}
-
-.sidebar-item:hover {
-  background-color: #34495e;
-  color: white;
-}
-
-.sidebar-item.active {
-  background-color: #0066cc;
-  color: white;
-  border-left-color: #0066cc;
-}
-
-.sidebar-icon {
-  font-size: 18px;
-}
-
-.sidebar-label {
-  font-size: 14px;
-  font-weight: 500;
-}
-</style>
