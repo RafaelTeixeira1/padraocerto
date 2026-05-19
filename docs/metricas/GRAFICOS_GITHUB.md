@@ -214,7 +214,7 @@ O esforço representa o trabalho humano necessário para desenvolver o sistema.
 
 ### Evidência complementar no GitHub
 
-O GitHub não mede horas trabalhadas diretamente. Por isso, a métrica de esforço foi coletada pela planilha `planilha_metricas_padraocerto_preenchida.xlsx`, e o GitHub foi usado como evidência complementar de atividade técnica.
+O GitHub não mede horas trabalhadas diretamente. Por isso, a métrica de esforço foi coletada pela planilha feitas pelos autores, e o GitHub foi usado como evidência complementar de atividade técnica.
 
 ### Resultados da planilha de horas
 
