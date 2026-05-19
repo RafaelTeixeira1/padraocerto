@@ -561,130 +561,12 @@ A produtividade final foi suficiente para concluir 100% do backlog. A divisão e
 
 ---
 
-# PARTE 3 - MÉTRICAS DE PRODUTO
 
-O trabalho pediu a escolha de três dimensões de produto. As dimensões escolhidas foram:
-
-- Usabilidade
-- Confiabilidade
-- Desempenho
+# PARTE 3 - GRÁFICOS COMPLEMENTARES
 
 ---
 
-## 15. Produto: Usabilidade
-
-### O que foi observado
-
-Facilidade do usuário em executar o fluxo principal.
-
-### Métricas escolhidas
-
-- Tempo para executar uma tarefa
-- Número de erros do usuário
-
-### Forma de coleta definida
-
-| Item | Definição |
-|---|---|
-| Coleta | observação direta ou teste prático |
-| Momento | fase final |
-| Fluxo observado | login, obra, checklist, inspeção e relatório |
-
-### Evidência disponível
-
-O sistema recebeu ajustes de feedback visual e responsividade:
-
-- Toasts de sucesso e erro
-- Mensagens de erro em ações principais
-- Layout responsivo com navegação mobile
-- Formulários com validação
-
-### Interpretação
-
-Mesmo sem uma bateria formal com usuários externos, as melhorias de interface reduzem risco de erro operacional. Para uma medição mais precisa, o próximo passo seria cronometrar usuários executando o fluxo principal e registrar erros por tarefa.
-
----
-
-## 16. Produto: Confiabilidade
-
-### O que foi observado
-
-Se o sistema executa o fluxo principal sem falhas e preserva os dados.
-
-### Métricas escolhidas
-
-- Taxa de sucesso das operações
-- Número de falhas
-
-### Resultado do smoke test
-
-```text
-Smoke test API concluído com sucesso
-Obra: 5 | Checklist: 9 | Inspeção: 5 | Conformidade: 67%
-```
-
-### Operações validadas
-
-| Operação | Resultado |
-|---|---|
-| Healthcheck com banco | Aprovado |
-| Cadastro de usuário | Aprovado |
-| Criação de obra | Aprovado |
-| Criação de checklist | Aprovado |
-| Vínculo checklist-obra | Aprovado |
-| Criação de inspeção | Aprovado |
-| Finalização de inspeção | Aprovado |
-| Consulta de relatório | Aprovado |
-| Consulta de dashboard | Aprovado |
-
-### Métrica calculada
-
-| Métrica | Resultado |
-|---|---:|
-| Operações testadas | 9 |
-| Operações aprovadas | 9 |
-| Falhas | 0 |
-| Taxa de sucesso | 100% |
-
-### Interpretação
-
-A confiabilidade do fluxo principal foi satisfatória para o MVP. O sistema passou a usar persistência real em MySQL, reduzindo o risco de perda de dados ao reiniciar o backend.
-
----
-
-## 17. Produto: Desempenho
-
-### O que foi observado
-
-Resposta da API e viabilidade operacional do sistema no ambiente Docker.
-
-### Métrica escolhida
-
-Tempo de resposta da API.
-
-### Evidência disponível
-
-O smoke test executou o fluxo completo da API com sucesso e o healthcheck confirmou conexão com o banco:
-
-```json
-{"status":"ok","database":"connected"}
-```
-
-### Interpretação
-
-O sistema respondeu adequadamente no ambiente local Docker para o fluxo do MVP. Para uma avaliação mais precisa de desempenho, recomenda-se coletar tempos em milissegundos por endpoint usando Postman, Insomnia, navegador ou script com medição de tempo.
-
-### Ação futura
-
-Adicionar ao smoke test a medição de tempo por requisição, registrando média, mínimo e máximo. Isso tornaria a métrica de desempenho mais forte e comparável.
-
----
-
-# PARTE 4 - GRÁFICOS COMPLEMENTARES
-
----
-
-## 18. Issues por Prioridade
+## 15. Issues por Prioridade
 
 ```mermaid
 pie showData
@@ -706,7 +588,7 @@ A maioria das issues foi classificada como alta prioridade. Isso indica que o ba
 
 ---
 
-## 19. Issues por Área
+## 16. Issues por Área
 
 Uma issue pode ter mais de uma área, por isso a soma das ocorrências é maior que 48.
 
@@ -734,7 +616,7 @@ O frontend aparece mais vezes porque o sistema depende de telas e fluxos operaci
 
 ---
 
-## 20. Kanban Final
+## 17. Kanban Final
 
 O Project/Kanban foi verificado no GitHub.
 
@@ -755,9 +637,9 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 ---
 
-# PARTE 5 - RELAÇÃO COM DECISÕES DO PROJETO
+# PARTE 4 - RELAÇÃO COM DECISÕES DO PROJETO
 
-## 21. Decisões Tomadas com Base nas Métricas
+## 18. Decisões Tomadas com Base nas Métricas
 
 | Métrica observada | O que revelou | Decisão tomada |
 |---|---|---|
@@ -771,7 +653,7 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 ---
 
-## 22. Limitações Encontradas
+## 19. Limitações Encontradas
 
 | Limitação | Impacto | Como melhorar |
 |---|---|---|
@@ -780,7 +662,7 @@ O quadro final confirma que todas as issues planejadas foram movidas para a colu
 
 ---
 
-## 23. Considerações Finais
+## 20. Considerações Finais
 
 As métricas revelaram que o projeto teve escopo bem definido, organizado em 48 issues e 10 milestones. O backlog foi totalmente concluído e o Kanban terminou com 48 itens em **Concluído**.
 
