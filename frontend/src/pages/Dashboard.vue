@@ -7,14 +7,202 @@
         <p class="text-sm text-muted-foreground">Bem-vindo ao PadrãoCerto!</p>
       </div>
       <div class="flex gap-3">
-        <Button @click="showNewObra" variant="primary">
+        <Button @click="showNewObraModal = true" variant="primary">
           <span class="mr-2">🏗️</span> Nova Obra
         </Button>
-        <Button @click="showNewChecklist" variant="secondary">
+        <Button @click="showNewChecklistModal = true" variant="secondary">
           <span class="mr-2">✅</span> Novo Checklist
         </Button>
       </div>
     </div>
+
+    <!-- Indicators Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <p class="text-sm text-muted-foreground mb-1">Total de Obras</p>
+        <p class="text-3xl font-bold text-foreground">12</p>
+        <p class="text-xs text-green-600 mt-1">+2 este mês</p>
+      </div>
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <p class="text-sm text-muted-foreground mb-1">Total de Inspeções</p>
+        <p class="text-3xl font-bold text-foreground">47</p>
+        <p class="text-xs text-green-600 mt-1">+12 esta semana</p>
+      </div>
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <p class="text-sm text-muted-foreground mb-1">Taxa Média de Conformidade</p>
+        <p class="text-3xl font-bold text-foreground">82%</p>
+        <p class="text-xs text-yellow-600 mt-1">↑ 3% vs. mês anterior</p>
+      </div>
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <p class="text-sm text-muted-foreground mb-1">Inspeções Esta Semana</p>
+        <p class="text-3xl font-bold text-foreground">8</p>
+        <p class="text-xs text-blue-600 mt-1">Média de 1.6/dia</p>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <!-- Conformance Distribution -->
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-foreground mb-4">Distribuição de Conformidade</h2>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-foreground">Conforme</span>
+              <span class="font-semibold text-green-600">72%</span>
+            </div>
+            <div class="w-full bg-muted rounded-full h-2">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 72%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-foreground">Não-Conforme</span>
+              <span class="font-semibold text-red-600">18%</span>
+            </div>
+            <div class="w-full bg-muted rounded-full h-2">
+              <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-foreground">Atenção</span>
+              <span class="font-semibold text-yellow-600">10%</span>
+            </div>
+            <div class="w-full bg-muted rounded-full h-2">
+              <div class="bg-yellow-500 h-2 rounded-full" style="width: 10%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-foreground mb-4">Atividade Recente</h2>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center gap-3 pb-3 border-b border-border">
+            <span class="text-xl">🏗️</span>
+            <div class="flex-1">
+              <p class="text-foreground">Obra "Centro Comercial" criada</p>
+              <p class="text-xs text-muted-foreground">Há 2 horas</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 pb-3 border-b border-border">
+            <span class="text-xl">✅</span>
+            <div class="flex-1">
+              <p class="text-foreground">Inspeção finalizada com 85% conforme</p>
+              <p class="text-xs text-muted-foreground">Há 5 horas</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 pb-3 border-b border-border">
+            <span class="text-xl">⚠️</span>
+            <div class="flex-1">
+              <p class="text-foreground">Itens não-conformes encontrados</p>
+              <p class="text-xs text-muted-foreground">Ontem</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xl">✅</span>
+            <div class="flex-1">
+              <p class="text-foreground">Nova checklist criada</p>
+              <p class="text-xs text-muted-foreground">2 dias atrás</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latest Inspections -->
+    <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-foreground mb-4">Últimas Inspeções</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="border-b border-border">
+            <tr>
+              <th class="text-left py-3 px-3 font-medium text-muted-foreground">Obra</th>
+              <th class="text-left py-3 px-3 font-medium text-muted-foreground">Checklist</th>
+              <th class="text-left py-3 px-3 font-medium text-muted-foreground">Responsável</th>
+              <th class="text-center py-3 px-3 font-medium text-muted-foreground">Conformidade</th>
+              <th class="text-left py-3 px-3 font-medium text-muted-foreground">Data</th>
+              <th class="text-left py-3 px-3 font-medium text-muted-foreground">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(inspection, idx) in mockInspections" :key="idx" class="border-b border-border hover:bg-muted/50 transition-colors">
+              <td class="py-3 px-3 text-foreground">{{ inspection.obra }}</td>
+              <td class="py-3 px-3 text-foreground">{{ inspection.checklist }}</td>
+              <td class="py-3 px-3 text-foreground">{{ inspection.responsavel }}</td>
+              <td class="py-3 px-3 text-center">
+                <span :class="{
+                  'text-green-600 font-semibold': inspection.conformidade >= 80,
+                  'text-yellow-600 font-semibold': inspection.conformidade >= 60 && inspection.conformidade < 80,
+                  'text-red-600 font-semibold': inspection.conformidade < 60
+                }">
+                  {{ inspection.conformidade }}%
+                </span>
+              </td>
+              <td class="py-3 px-3 text-muted-foreground">{{ inspection.data }}</td>
+              <td class="py-3 px-3">
+                <router-link :to="`/relatorio/${inspection.id}`" class="text-secondary hover:underline text-sm">
+                  Ver Relatório
+                </router-link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <NewObraModal :open="showNewObraModal" @close="showNewObraModal = false" @submit="handleNewObra" />
+    <NewChecklistModal :open="showNewChecklistModal" @close="showNewChecklistModal = false" @submit="handleNewChecklist" />
+    <ConfirmModal :open="showConfirmModal" :type="confirmType" :title="confirmTitle" :heading="confirmHeading" :message="confirmMessage" :details="confirmDetails" @close="showConfirmModal = false" />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { Button } from '../components/ui'
+import { NewObraModal, NewChecklistModal, ConfirmModal } from '../components/modals'
+
+const showNewObraModal = ref(false)
+const showNewChecklistModal = ref(false)
+const showConfirmModal = ref(false)
+
+const confirmType = ref('success')
+const confirmTitle = ref('')
+const confirmHeading = ref('')
+const confirmMessage = ref('')
+const confirmDetails = ref('')
+
+const mockInspections = ref([
+  { id: 1, obra: 'Centro Comercial', checklist: 'Estrutura Civil', responsavel: 'João Silva', conformidade: 88, data: '19/05/2026' },
+  { id: 2, obra: 'Residencial Sul', checklist: 'Acabamento', responsavel: 'Maria Santos', conformidade: 92, data: '18/05/2026' },
+  { id: 3, obra: 'Hospital', checklist: 'Segurança', responsavel: 'Pedro Costa', conformidade: 76, data: '17/05/2026' },
+  { id: 4, obra: 'Escola Pública', checklist: 'Hidráulica', responsavel: 'Ana Souza', conformidade: 85, data: '16/05/2026' },
+  { id: 5, obra: 'Prédio Comercial', checklist: 'Elétrica', responsavel: 'Carlos Lima', conformidade: 65, data: '15/05/2026' }
+])
+
+const handleNewObra = (formData) => {
+  showNewObraModal.value = false
+  confirmType.value = 'success'
+  confirmTitle.value = 'Obra Criada'
+  confirmHeading.value = '✅ Obra criada com sucesso'
+  confirmMessage.value = 'A nova obra foi adicionada ao sistema.'
+  confirmDetails.value = `Obra: ${formData.nome}\nLocalização: ${formData.localizacao}`
+  showConfirmModal.value = true
+}
+
+const handleNewChecklist = (formData) => {
+  showNewChecklistModal.value = false
+  confirmType.value = 'success'
+  confirmTitle.value = 'Checklist Criado'
+  confirmHeading.value = '✅ Checklist criado com sucesso'
+  confirmMessage.value = 'O novo checklist está pronto para ser vinculado às obras.'
+  confirmDetails.value = `Checklist: ${formData.nome}\nItens: ${formData.itens.length}`
+  showConfirmModal.value = true
+}
+</script>
 
     <!-- Indicators Cards -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
