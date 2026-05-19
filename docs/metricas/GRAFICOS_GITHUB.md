@@ -152,7 +152,7 @@ pie showData
   "Abertas" : 0
 ```
 
-<span style="color:#2563EB; font-weight:bold;">Interpretação</span>
+## 🔵 Interpretação
 
 O backlog planejado foi totalmente concluído. Isso indica que o escopo definido para o MVP foi controlado e entregue. Não houve criação de novas issues fora do planejamento inicial durante a fase final, o que reduz o risco de scope creep.
 
@@ -181,7 +181,7 @@ xychart-beta
 | M9 | Testes, Ajustes e Usabilidade | 5 |
 | M10 | Métricas e Documentação Final | 5 |
 
-### Interpretação
+## 🔵 Interpretação
 
 A milestone M2 concentrou mais issues porque envolveu criação de interface, componentes visuais, telas estáticas e navegação. As demais milestones ficaram mais equilibradas, com 4 ou 5 issues cada, indicando uma divisão relativamente uniforme do trabalho.
 
@@ -262,9 +262,8 @@ xychart-beta
 | Issues com responsável definido | 47 |
 | Issues sem responsável | 1 |
 
-### Interpretação
+## 🔵 Interpretação
 
-### Interpretação
 
 O esforço foi distribuído de forma equilibrada: Rafael registrou 83 horas e Jhannyfer 73 horas. A diferença entre os integrantes permaneceu pequena em relação ao total de 156 horas, indicando divisão relativamente equilibrada das atividades.
 
@@ -294,7 +293,7 @@ xychart-beta
 | jhannyfer | 23 |
 | Sem responsável | 1 |
 
-### Interpretação
+## 🔵 Interpretação
 
 A distribuição ficou praticamente equilibrada. Isso reduz risco de concentração de trabalho em apenas um integrante. A única issue sem responsável não compromete a análise, pois o conjunto total foi concluído.
 
@@ -325,7 +324,7 @@ xychart-beta
 | M9 | 7 |
 | M10 | 7 |
 
-### Interpretação
+## 🔵 Interpretação
 
 A milestone M2 permaneceu como a mais trabalhosa, concentrando grande parte da construção visual, componentes reutilizáveis e navegação do sistema. As milestones M5, M6 e M7 também tiveram alta carga de horas por envolverem persistência, integração backend/frontend e execução do fluxo completo de inspeções.
 
@@ -364,7 +363,7 @@ xychart-beta
   bar [7, 18.4, 48]
 ```
 
-### Interpretação
+## 🔵 Interpretação
 
 Todas as issues foram consolidadas e fechadas formalmente no GitHub em 19/05/2026. Isso mostra que o encerramento administrativo do Kanban foi concentrado na etapa final do projeto. No entanto, a planilha de horas demonstra que a execução prática ocorreu de forma distribuída entre 01/04/2026 e 19/05/2026, com registros contínuos de desenvolvimento, integração, testes e ajustes ao longo do período.
 
@@ -404,7 +403,7 @@ Throughput: quantidade de issues concluídas por período.
 | Produtividade por esforço | 0,31 issues/h |
 | Média de horas por issue | 3,25 h/issue |
 
-### Interpretação
+## 🔵 Interpretação
 
 O throughput final registrado no GitHub ficou elevado porque as issues foram consolidadas e encerradas formalmente na etapa final do projeto. Por isso, a planilha de horas foi utilizada como principal evidência de produtividade operacional.
 
@@ -451,7 +450,7 @@ pie showData
   "Style" : 1
 ```
 
-### Interpretação
+## 🔵 Interpretação
 
 A presença de apenas uma issue do tipo fix sugere baixo volume formal de correção no backlog. Já a planilha mostra 25 horas de retrabalho, principalmente em ajustes de Docker, banco, CORS, responsividade e integração. Isso mostra que o retrabalho existiu, mas foi tratado durante a execução e não ficou como falha final do produto.
 
@@ -486,7 +485,7 @@ Estabilidade das entregas e necessidade de retrabalho.
 | Taxa de retrabalho por horas | 18,6% |
 | Falhas finais | 0 |
 
-### Interpretação
+## 🔵 Interpretação
 
 O processo teve retrabalho durante a implementação, mas terminou com uma fase final de validação bem definida. O smoke test cobre cadastro, obra, checklist, vínculo, inspeção, finalização, relatório e dashboard. Isso reduz o risco de entregar uma aplicação apenas visual sem funcionamento real.
 
@@ -520,7 +519,7 @@ xychart-beta
 | Lead time médio | 18,4 |
 | Lead time máximo | 48 |
 
-### Interpretação
+## 🔵 Interpretação
 
 O lead time variou entre 7 e 48 dias dependendo da complexidade das funcionalidades implementadas. Issues relacionadas à infraestrutura, integração frontend/backend, persistência e autenticação permaneceram abertas por mais tempo devido à dependência entre módulos e necessidade de estabilização do ambiente Docker.
 
@@ -555,7 +554,7 @@ Volume de entrega em relação ao processo de trabalho.
 | Segundo responsável | jhannyfer, 23 |
 | Maior milestone | M2, 8 issues |
 
-### Interpretação
+## 🔵 Interpretação
 
 A produtividade final foi suficiente para concluir 100% do backlog. A divisão equilibrada por responsável indica boa distribuição de trabalho. A milestone M2 teve maior carga por concentrar a base visual do sistema.
 
@@ -582,7 +581,7 @@ pie showData
 | Média | 13 | 27,1% |
 | Baixa | 1 | 2,1% |
 
-### Interpretação
+## 🔵 Interpretação
 
 A maioria das issues foi classificada como alta prioridade. Isso indica que o backlog estava focado no MVP essencial, com pouca margem para tarefas opcionais.
 
@@ -610,7 +609,7 @@ xychart-beta
 | Database | 4 |
 | Docker | 2 |
 
-### Interpretação
+## 🔵 Interpretação
 
 O frontend aparece mais vezes porque o sistema depende de telas e fluxos operacionais. O backend também teve alta participação por causa da persistência, autenticação e regras de negócio.
 
@@ -631,7 +630,7 @@ pie showData
   "Outras colunas" : 0
 ```
 
-### Interpretação
+## 🔵 Interpretação
 
 O quadro final confirma que todas as issues planejadas foram movidas para a coluna final. Isso atende ao critério de rastreabilidade do trabalho, pois cada item possui histórico, responsável, labels, milestone e estado final.
 
