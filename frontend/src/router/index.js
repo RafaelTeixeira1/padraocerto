@@ -92,8 +92,8 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !isAuthenticated) {
     // Rota protegida + não autenticado → login
     next('/login')
-  } else if (!to.meta.requiresAuth && isAuthenticated && to.path === '/login') {
-    // Tentando acessar login estando logado → dashboard
+  } else if (to.meta.layout === 'blank' && isAuthenticated) {
+    // Tentando acessar tela pública estando logado → dashboard
     next('/')
   } else {
     // Permitir acesso

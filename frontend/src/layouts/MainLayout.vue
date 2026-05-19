@@ -20,14 +20,11 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { Navbar, Sidebar } from '../components/ui'
-
-const router = useRouter()
 
 const currentUser = computed(() => ({
   name: localStorage.getItem('userName') || 'Usuário',
-  email: 'user@padraocerto.com'
+  email: localStorage.getItem('userEmail') || 'user@padraocerto.com'
 }))
 
 const navItems = [

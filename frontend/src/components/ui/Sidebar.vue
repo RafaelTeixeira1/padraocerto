@@ -47,6 +47,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
 
@@ -62,9 +63,16 @@ defineProps({
   active: String
 })
 
-const handleLogout = () => {
+const handleLogout = async () => {
+  try {
+    await axios.post('/auth/logout')
+  } catch (error) {
+    console.error(error)
+  }
+
   localStorage.removeItem('session')
   localStorage.removeItem('userName')
+  localStorage.removeItem('userEmail')
   router.push('/login')
 }
 </script>

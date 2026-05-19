@@ -18,6 +18,7 @@
             type="email"
             label="Email"
             placeholder="seu@email.com"
+            :error="errorMessage"
             required
           />
 
@@ -49,21 +50,26 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import axios from 'axios'
 import { Input, Button } from '../components/ui'
 
 const email = ref('')
 const loading = ref(false)
 const temporaryPassword = ref('')
-const router = useRouter()
+const errorMessage = ref('')
 
 const handleRecover = async () => {
   loading.value = true
   temporaryPassword.value = ''
+  errorMessage.value = ''
 
-  await new Promise(resolve => setTimeout(resolve, 500))
-
-  temporaryPassword.value = Math.random().toString(36).substr(2, 10).toUpperCase()
-  loading.value = false
+  try {
+    const { data } = await axios.post('/auth/recover', { email: email.value })
+    temporaryPassword.value = data.temporaryPassword
+  } catch (error) {
+    errorMessage.value = error.response?.data?.error || 'Não foi possível recuperar a senha'
+  } finally {
+    loading.value = false
+  }
 }
 </script>

@@ -21,6 +21,7 @@
             type="email"
             label="Email"
             placeholder="seu@email.com"
+            :error="errorMessage"
             required
           />
 
@@ -62,22 +63,34 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 import { Input, Button } from '../components/ui'
 
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
+const errorMessage = ref('')
 const router = useRouter()
 
 const handleLogin = async () => {
   loading.value = true
-  // Simulando chamada à API
-  await new Promise(resolve => setTimeout(resolve, 500))
+  errorMessage.value = ''
 
-  localStorage.setItem('session', 'mock-token')
-  localStorage.setItem('userName', email.value.split('@')[0])
+  try {
+    const { data } = await axios.post('/auth/login', {
+      email: email.value,
+      password: password.value
+    })
 
-  loading.value = false
-  router.push('/')
+    localStorage.setItem('session', data.token)
+    localStorage.setItem('userName', data.user.nome)
+    localStorage.setItem('userEmail', data.user.email)
+
+    router.push('/')
+  } catch (error) {
+    errorMessage.value = error.response?.data?.error || 'Não foi possível entrar'
+  } finally {
+    loading.value = false
+  }
 }
 </script>

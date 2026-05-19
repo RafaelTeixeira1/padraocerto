@@ -61,6 +61,8 @@
             </label>
           </div>
 
+          <p v-if="errors.form" class="text-sm text-destructive">{{ errors.form }}</p>
+
           <Button type="submit" variant="primary" :fullWidth="true" :loading="loading">
             Criar Conta
           </Button>
@@ -84,6 +86,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 import { Input, Button } from '../components/ui'
 
 const fullName = ref('')
@@ -98,11 +101,12 @@ const errors = ref({
   fullName: '',
   email: '',
   password: '',
-  passwordConfirm: ''
+  passwordConfirm: '',
+  form: ''
 })
 
 const handleSignup = async () => {
-  errors.value = { fullName: '', email: '', password: '', passwordConfirm: '' }
+  errors.value = { fullName: '', email: '', password: '', passwordConfirm: '', form: '' }
 
   if (!fullName.value.trim()) {
     errors.value.fullName = 'Nome completo é obrigatório'
@@ -126,11 +130,21 @@ const handleSignup = async () => {
   }
 
   loading.value = true
-  await new Promise(resolve => setTimeout(resolve, 500))
+  try {
+    const { data } = await axios.post('/auth/register', {
+      nome: fullName.value,
+      email: email.value,
+      password: password.value
+    })
 
-  localStorage.setItem('session', 'mock-token')
-  localStorage.setItem('userName', fullName.value.split(' ')[0])
-  loading.value = false
-  router.push('/')
+    localStorage.setItem('session', data.token)
+    localStorage.setItem('userName', data.user.nome)
+    localStorage.setItem('userEmail', data.user.email)
+    router.push('/')
+  } catch (error) {
+    errors.value.form = error.response?.data?.error || 'Não foi possível criar a conta'
+  } finally {
+    loading.value = false
+  }
 }
 </script>
