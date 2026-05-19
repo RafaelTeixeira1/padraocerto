@@ -348,9 +348,9 @@ Foi observado o tempo entre criação e fechamento das issues.
 |---|---:|
 | Issues concluídas | 48 |
 | Percentual concluído | 100% |
-| Lead time médio | 9,85 dias |
-| Menor lead time | 9,30 dias |
-| Maior lead time | 9,91 dias |
+| Lead time médio | 18,4 dias |
+| Menor lead time | 7 dias |
+| Maior lead time | 48 dias |
 
 ### Gráfico: Fechamento por Data
 
@@ -358,10 +358,10 @@ O GitHub registra o fechamento formal das issues em 19/05/2026. Porém, a planil
 
 ```mermaid
 xychart-beta
-  title "Issues Fechadas por Data"
-  x-axis ["2026-05-19"]
-  y-axis "Issues fechadas" 0 --> 48
-  bar [48]
+  title "Lead Time das Issues"
+  x-axis ["Mínimo", "Médio", "Máximo"]
+  y-axis "Dias" 0 --> 50
+  bar [7, 18.4, 48]
 ```
 
 ### Interpretação
