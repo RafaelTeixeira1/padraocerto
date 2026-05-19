@@ -56,17 +56,23 @@
 
     <template #footer>
       <Button @click="emit('close')" variant="outline">Cancelar</Button>
-      <Button @click="handleSubmit" variant="primary" :loading="loading">Criar Checklist</Button>
+      <Button @click="handleSubmit" variant="primary" :loading="loading">
+        {{ props.initialData ? 'Salvar Checklist' : 'Criar Checklist' }}
+      </Button>
     </template>
   </Modal>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Modal, Button, Input } from '../ui'
 
-defineProps({
-  open: Boolean
+const props = defineProps({
+  open: Boolean,
+  initialData: {
+    type: Object,
+    default: null
+  }
 })
 
 const emit = defineEmits(['close', 'submit'])
@@ -85,6 +91,31 @@ const form = ref({
 const errors = ref({
   nome: '',
   itens: ''
+})
+
+const resetForm = () => {
+  if (props.initialData) {
+    form.value = {
+      nome: props.initialData.nome || '',
+      descricao: props.initialData.descricao || '',
+      itens: props.initialData.itens.map(descricao => ({ descricao }))
+    }
+    return
+  }
+
+  form.value = {
+    nome: '',
+    descricao: '',
+    itens: [
+      { descricao: '' },
+      { descricao: '' },
+      { descricao: '' }
+    ]
+  }
+}
+
+watch(() => props.open, (open) => {
+  if (open) resetForm()
 })
 
 const addItem = () => {
@@ -115,6 +146,6 @@ const handleSubmit = async () => {
   await new Promise(resolve => setTimeout(resolve, 500))
   loading.value = false
 
-  emit('submit', { ...form.value, itens: filledItems })
+  emit('submit', { ...form.value, id: props.initialData?.id, itens: filledItems })
 }
 </script>

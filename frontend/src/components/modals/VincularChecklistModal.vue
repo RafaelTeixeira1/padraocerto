@@ -50,7 +50,7 @@ import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { Modal, Button, Input } from '../ui'
 
-defineProps({
+const props = defineProps({
   open: Boolean,
   obraId: String
 })
@@ -102,10 +102,10 @@ const handleSubmit = async () => {
   loading.value = true
   try {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const response = await axios.post(`${base}/obras/${obraId}/vincular`, { checklistId: form.value.checklistId, dataVencimento: form.value.dataVencimento })
+    const response = await axios.post(`${base}/obras/${props.obraId}/vincular`, { checklistId: form.value.checklistId, dataVencimento: form.value.dataVencimento })
     loading.value = false
     emit('submit', response.data)
-    router.push({ path: `/obras/${obraId}/apos-vincular`, query: { checklistId: form.value.checklistId } })
+    router.push({ path: `/obras/${props.obraId}/apos-vincular`, query: { checklistId: form.value.checklistId } })
   } catch (err) {
     loading.value = false
     console.error(err)

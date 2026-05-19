@@ -49,17 +49,23 @@
 
     <template #footer>
       <Button @click="emit('close')" variant="outline">Cancelar</Button>
-      <Button @click="handleSubmit" variant="primary" :loading="loading">Criar Obra</Button>
+      <Button @click="handleSubmit" variant="primary" :loading="loading">
+        {{ props.initialData ? 'Salvar Obra' : 'Criar Obra' }}
+      </Button>
     </template>
   </Modal>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Modal, Button, Input } from '../ui'
 
-defineProps({
-  open: Boolean
+const props = defineProps({
+  open: Boolean,
+  initialData: {
+    type: Object,
+    default: null
+  }
 })
 
 const emit = defineEmits(['close', 'submit'])
@@ -78,6 +84,41 @@ const errors = ref({
   localizacao: '',
   responsavel: '',
   dataInicio: ''
+})
+
+const toInputDate = (value) => {
+  if (!value) return ''
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value
+
+  const [day, month, year] = String(value).split('/')
+  if (day && month && year) return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+
+  return ''
+}
+
+const resetForm = () => {
+  if (props.initialData) {
+    form.value = {
+      nome: props.initialData.nome || '',
+      localizacao: props.initialData.localizacao || '',
+      responsavel: props.initialData.responsavel || '',
+      dataInicio: toInputDate(props.initialData.dataInicio),
+      descricao: props.initialData.descricao || ''
+    }
+    return
+  }
+
+  form.value = {
+    nome: '',
+    localizacao: '',
+    responsavel: '',
+    dataInicio: '',
+    descricao: ''
+  }
+}
+
+watch(() => props.open, (open) => {
+  if (open) resetForm()
 })
 
 const handleSubmit = async () => {
@@ -104,6 +145,6 @@ const handleSubmit = async () => {
   await new Promise(resolve => setTimeout(resolve, 500))
   loading.value = false
 
-  emit('submit', form.value)
+  emit('submit', { ...form.value, id: props.initialData?.id })
 }
 </script>

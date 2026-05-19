@@ -6,7 +6,7 @@
         <p class="text-sm text-muted-foreground">Modelos reutilizáveis para inspeções</p>
       </div>
 
-      <Button @click="showNewChecklistModal = true" variant="secondary">
+      <Button @click="openCreateChecklist" variant="secondary">
         <span class="mr-2">➕</span> Novo Checklist
       </Button>
     </div>
@@ -72,7 +72,7 @@
       <p class="text-4xl mb-3">🗂️</p>
       <h3 class="text-lg font-semibold text-foreground mb-2">Nenhum checklist encontrado</h3>
       <p class="text-muted-foreground mb-6">Crie um novo modelo para começar</p>
-      <Button variant="secondary" @click="showNewChecklistModal = true">Novo Checklist</Button>
+      <Button variant="secondary" @click="openCreateChecklist">Novo Checklist</Button>
     </div>
 
     <div v-if="selectedChecklist" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
@@ -97,12 +97,18 @@
 
         <div class="flex justify-end gap-3">
           <Button variant="outline" @click="selectedChecklist = null">Fechar</Button>
-          <Button variant="primary" @click="showNewChecklistModal = true">Criar novo</Button>
+          <Button variant="outline" @click="deleteChecklist(selectedChecklist)">Excluir</Button>
+          <Button variant="primary" @click="openEditChecklist(selectedChecklist)">Editar</Button>
         </div>
       </div>
     </div>
 
-    <NewChecklistModal :open="showNewChecklistModal" @close="showNewChecklistModal = false" @submit="handleNewChecklist" />
+    <NewChecklistModal
+      :open="showNewChecklistModal"
+      :initialData="editingChecklist"
+      @close="closeChecklistModal"
+      @submit="handleSaveChecklist"
+    />
   </div>
 </template>
 
@@ -116,6 +122,7 @@ const checklists = ref([])
 const searchQuery = ref('')
 const showNewChecklistModal = ref(false)
 const selectedChecklist = ref(null)
+const editingChecklist = ref(null)
 const lastUpdate = ref('--')
 
 const loadChecklists = async () => {
@@ -143,15 +150,51 @@ const filteredChecklists = computed(() => {
 
 const validChecklists = computed(() => checklists.value.filter(checklist => checklist.itens.length >= 3).length)
 
-const handleNewChecklist = async (formData) => {
+const openCreateChecklist = () => {
+  editingChecklist.value = null
+  showNewChecklistModal.value = true
+}
+
+const openEditChecklist = (checklist) => {
+  editingChecklist.value = checklist
+  showNewChecklistModal.value = true
+}
+
+const closeChecklistModal = () => {
+  showNewChecklistModal.value = false
+  editingChecklist.value = null
+}
+
+const handleSaveChecklist = async (formData) => {
   try {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    await axios.post(`${base}/checklists`, formData)
+    if (formData.id) {
+      await axios.put(`${base}/checklists/${formData.id}`, formData)
+    } else {
+      await axios.post(`${base}/checklists`, formData)
+    }
     await loadChecklists()
+    selectedChecklist.value = null
   } catch (error) {
     console.error(error)
   } finally {
-    showNewChecklistModal.value = false
+    closeChecklistModal()
+  }
+}
+
+const deleteChecklist = async (checklist) => {
+  if (!window.confirm(`Excluir o checklist "${checklist.nome}"?`)) {
+    return
+  }
+
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    await axios.delete(`${base}/checklists/${checklist.id}`)
+    selectedChecklist.value = null
+    await loadChecklists()
+  } catch (error) {
+    console.error(error)
+    alert(error.response?.data?.error || 'Não foi possível excluir o checklist')
   }
 }
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div class="p-6">
     <!-- Header -->
+    <div v-if="loadError" class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+      {{ loadError }}
+    </div>
+
     <div class="flex justify-between items-start mb-8">
       <div>
         <h1 class="text-3xl font-bold text-foreground mb-2">{{ obra.nome }}</h1>
@@ -16,8 +20,8 @@
         </div>
       </div>
       <div class="flex gap-3">
-        <Button variant="secondary">Editar</Button>
-        <Button variant="outline">Deletar</Button>
+        <Button variant="secondary" @click="showEditModal = true">Editar</Button>
+        <Button variant="outline" @click="deleteObra">Deletar</Button>
       </div>
     </div>
 
@@ -37,7 +41,7 @@
           </div>
           <div>
             <p class="text-xs text-muted-foreground">Total de Inspeções</p>
-            <p class="text-foreground font-medium">{{ obra.totalInspecoes }}</p>
+            <p class="text-foreground font-medium">{{ obra.historico.length }}</p>
           </div>
         </div>
       </div>
@@ -149,41 +153,52 @@
 
     <!-- Modal -->
     <VincularChecklistModal :open="showVincularModal" :obraId="obraId" @close="showVincularModal = false" @submit="handleVincularChecklist" />
+    <NewObraModal :open="showEditModal" :initialData="obra" @close="showEditModal = false" @submit="handleEditObra" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import axios from 'axios'
 import { Button } from '../components/ui'
-import { VincularChecklistModal } from '../components/modals'
+import { NewObraModal, VincularChecklistModal } from '../components/modals'
 
 const route = useRoute()
 const obraId = route.params.id
 
 const showVincularModal = ref(false)
+const showEditModal = ref(false)
+const loadError = ref('')
 
 const obra = ref({
-  nome: 'Centro Comercial',
-  localizacao: 'Av. Paulista, 1000 - São Paulo, SP',
+  nome: 'Carregando...',
+  localizacao: '',
   status: 'ativa',
-  responsavel: 'João Silva',
-  dataInicio: '01/03/2026',
-  totalInspecoes: 5,
-  conformidade: 88,
-  descricao: 'Projeto de construção de centro comercial com 15 lojas, 2 andares de estacionamento e áreas de convivência.',
-  checklists: [
-    { id: 1, nome: 'Estrutura Civil', itens: 25, data: '01/03/2026' },
-    { id: 2, nome: 'Segurança', itens: 15, data: '05/03/2026' }
-  ],
-  historico: [
-    { id: 1, checklist: 'Estrutura Civil', responsavel: 'João Silva', conformidade: 88, data: '19/05/2026' },
-    { id: 2, checklist: 'Segurança', responsavel: 'Pedro Costa', conformidade: 92, data: '17/05/2026' },
-    { id: 3, checklist: 'Estrutura Civil', responsavel: 'João Silva', conformidade: 85, data: '10/05/2026' }
-  ]
+  responsavel: '',
+  dataInicio: '',
+  conformidade: 0,
+  descricao: '',
+  checklists: [],
+  historico: []
 })
 
 const router = useRouter()
+
+const loadObra = async () => {
+  try {
+    const { data } = await axios.get(`/obras/${obraId}`)
+    const conformidade = data.historico.length
+      ? Math.round(data.historico.reduce((total, item) => total + item.conformidade, 0) / data.historico.length)
+      : 0
+    obra.value = { ...data, conformidade }
+  } catch (error) {
+    console.error(error)
+    loadError.value = error.response?.data?.error || 'Não foi possível carregar a obra'
+  }
+}
+
+onMounted(loadObra)
 
 const startInspection = (checklistId) => {
   const checklist = obra.value.checklists.find(c => c.id === checklistId)
@@ -193,16 +208,33 @@ const startInspection = (checklistId) => {
   }
 }
 
-const handleVincularChecklist = (formData) => {
-  const checklist = {
-    id: formData.checklistId,
-    nome: 'Novo Checklist',
-    itens: 15,
-    data: new Date().toLocaleDateString('pt-BR')
-  }
-  if (!obra.value.checklists.find(c => c.id === checklist.id)) {
-    obra.value.checklists.push(checklist)
-  }
+const handleVincularChecklist = async () => {
+  await loadObra()
   showVincularModal.value = false
+}
+
+const deleteObra = async () => {
+  if (!window.confirm('Deseja remover esta obra?')) {
+    return
+  }
+
+  try {
+    await axios.delete(`/obras/${obraId}`)
+    router.push('/obras')
+  } catch (error) {
+    console.error(error)
+    loadError.value = error.response?.data?.error || 'Não foi possível remover a obra'
+  }
+}
+
+const handleEditObra = async (formData) => {
+  try {
+    await axios.put(`/obras/${obraId}`, { ...formData, status: obra.value.status })
+    showEditModal.value = false
+    await loadObra()
+  } catch (error) {
+    console.error(error)
+    loadError.value = error.response?.data?.error || 'Não foi possível editar a obra'
+  }
 }
 </script>

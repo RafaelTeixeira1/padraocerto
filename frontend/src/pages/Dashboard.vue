@@ -20,23 +20,23 @@
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
       <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
         <p class="text-sm text-muted-foreground mb-1">Total de Obras</p>
-        <p class="text-3xl font-bold text-foreground">12</p>
-        <p class="text-xs text-green-600 mt-1">+2 este mês</p>
+        <p class="text-3xl font-bold text-foreground">{{ dashboard.totalObras }}</p>
+        <p class="text-xs text-muted-foreground mt-1">Dados persistidos</p>
       </div>
       <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
         <p class="text-sm text-muted-foreground mb-1">Total de Inspeções</p>
-        <p class="text-3xl font-bold text-foreground">47</p>
-        <p class="text-xs text-green-600 mt-1">+12 esta semana</p>
+        <p class="text-3xl font-bold text-foreground">{{ dashboard.totalInspecoes }}</p>
+        <p class="text-xs text-muted-foreground mt-1">Finalizadas</p>
       </div>
       <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
         <p class="text-sm text-muted-foreground mb-1">Taxa Média de Conformidade</p>
-        <p class="text-3xl font-bold text-foreground">82%</p>
-        <p class="text-xs text-yellow-600 mt-1">↑ 3% vs. mês anterior</p>
+        <p class="text-3xl font-bold text-foreground">{{ dashboard.conformidadeMedia }}%</p>
+        <p class="text-xs text-muted-foreground mt-1">Média geral</p>
       </div>
       <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
         <p class="text-sm text-muted-foreground mb-1">Inspeções Esta Semana</p>
-        <p class="text-3xl font-bold text-foreground">8</p>
-        <p class="text-xs text-blue-600 mt-1">Média de 1.6/dia</p>
+        <p class="text-3xl font-bold text-foreground">{{ dashboard.ultimasInspecoes.length }}</p>
+        <p class="text-xs text-muted-foreground mt-1">Últimas listadas</p>
       </div>
     </div>
 
@@ -49,28 +49,28 @@
           <div>
             <div class="flex justify-between text-sm mb-1">
               <span class="text-foreground">Conforme</span>
-              <span class="font-semibold text-green-600">72%</span>
+              <span class="font-semibold text-green-600">{{ conformesPercent }}%</span>
             </div>
             <div class="w-full bg-muted rounded-full h-2">
-              <div class="bg-green-500 h-2 rounded-full" style="width: 72%"></div>
+              <div class="bg-green-500 h-2 rounded-full" :style="{ width: conformesPercent + '%' }"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
               <span class="text-foreground">Não-Conforme</span>
-              <span class="font-semibold text-red-600">18%</span>
+              <span class="font-semibold text-red-600">{{ naoConformesPercent }}%</span>
             </div>
             <div class="w-full bg-muted rounded-full h-2">
-              <div class="bg-red-500 h-2 rounded-full" style="width: 18%"></div>
+              <div class="bg-red-500 h-2 rounded-full" :style="{ width: naoConformesPercent + '%' }"></div>
             </div>
           </div>
           <div>
             <div class="flex justify-between text-sm mb-1">
               <span class="text-foreground">Atenção</span>
-              <span class="font-semibold text-yellow-600">10%</span>
+              <span class="font-semibold text-yellow-600">0%</span>
             </div>
             <div class="w-full bg-muted rounded-full h-2">
-              <div class="bg-yellow-500 h-2 rounded-full" style="width: 10%"></div>
+              <div class="bg-yellow-500 h-2 rounded-full" style="width: 0%"></div>
             </div>
           </div>
         </div>
@@ -83,29 +83,29 @@
           <div class="flex items-center gap-3 pb-3 border-b border-border">
             <span class="text-xl">🏗️</span>
             <div class="flex-1">
-              <p class="text-foreground">Obra "Centro Comercial" criada</p>
-              <p class="text-xs text-muted-foreground">Há 2 horas</p>
+              <p class="text-foreground">{{ dashboard.totalObras }} obra(s) cadastrada(s)</p>
+              <p class="text-xs text-muted-foreground">Banco MySQL</p>
             </div>
           </div>
           <div class="flex items-center gap-3 pb-3 border-b border-border">
             <span class="text-xl">✅</span>
             <div class="flex-1">
-              <p class="text-foreground">Inspeção finalizada com 85% conforme</p>
-              <p class="text-xs text-muted-foreground">Há 5 horas</p>
+              <p class="text-foreground">{{ dashboard.totalInspecoes }} inspeção(ões) finalizada(s)</p>
+              <p class="text-xs text-muted-foreground">Histórico persistido</p>
             </div>
           </div>
           <div class="flex items-center gap-3 pb-3 border-b border-border">
             <span class="text-xl">⚠️</span>
             <div class="flex-1">
-              <p class="text-foreground">Itens não-conformes encontrados</p>
-              <p class="text-xs text-muted-foreground">Ontem</p>
+              <p class="text-foreground">{{ dashboard.naoConformes }} inspeção(ões) abaixo de 70%</p>
+              <p class="text-xs text-muted-foreground">Indicador de atenção</p>
             </div>
           </div>
           <div class="flex items-center gap-3">
             <span class="text-xl">✅</span>
             <div class="flex-1">
-              <p class="text-foreground">Nova checklist criada</p>
-              <p class="text-xs text-muted-foreground">2 dias atrás</p>
+              <p class="text-foreground">Taxa média: {{ dashboard.conformidadeMedia }}%</p>
+              <p class="text-xs text-muted-foreground">Atualizado em tempo real</p>
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { Button } from '../components/ui'
 import { NewObraModal, NewChecklistModal } from '../components/modals'
 import axios from 'axios'
@@ -178,13 +178,32 @@ const showNewChecklistModal = ref(false)
 const mockInspections = ref([])
 const obras = ref([])
 const filterObra = ref('')
+const dashboard = ref({
+  totalObras: 0,
+  totalInspecoes: 0,
+  conformidadeMedia: 0,
+  conformes: 0,
+  naoConformes: 0,
+  ultimasInspecoes: []
+})
+
+const conformesPercent = computed(() => {
+  if (!dashboard.value.totalInspecoes) return 0
+  return Math.round((dashboard.value.conformes / dashboard.value.totalInspecoes) * 100)
+})
+
+const naoConformesPercent = computed(() => {
+  if (!dashboard.value.totalInspecoes) return 0
+  return Math.round((dashboard.value.naoConformes / dashboard.value.totalInspecoes) * 100)
+})
 
 const loadData = async () => {
   try {
     const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const [oRes, iRes] = await Promise.all([axios.get(`${base}/obras`), axios.get(`${base}/inspecoes`)])
+    const [oRes, dRes] = await Promise.all([axios.get(`${base}/obras`), axios.get(`${base}/dashboard`)])
     obras.value = oRes.data
-    mockInspections.value = iRes.data
+    dashboard.value = dRes.data
+    mockInspections.value = dRes.data.ultimasInspecoes
   } catch (err) {
     console.error(err)
   }
