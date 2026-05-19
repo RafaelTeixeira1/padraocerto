@@ -125,8 +125,7 @@ const showNewObraModal = ref(false)
 const mockObras = ref([])
 
 const loadObras = async () => {
-  const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-  const response = await axios.get(`${base}/obras`)
+  const response = await axios.get('/obras')
   mockObras.value = response.data.map(obra => ({
     ...obra,
     inspecoes: obra.historico?.length || 0,
@@ -155,8 +154,7 @@ const filteredObras = computed(() => {
 
 const handleNewObra = async (formData) => {
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    await axios.post(`${base}/obras`, formData)
+    await axios.post('/obras', formData)
     await loadObras()
     showFeedback({ title: 'Obra criada', message: 'A obra foi salva no banco de dados.' })
   } catch (error) {

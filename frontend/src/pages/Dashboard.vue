@@ -200,8 +200,7 @@ const naoConformesPercent = computed(() => {
 
 const loadData = async () => {
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const [oRes, dRes] = await Promise.all([axios.get(`${base}/obras`), axios.get(`${base}/dashboard`)])
+    const [oRes, dRes] = await Promise.all([axios.get('/obras'), axios.get('/dashboard')])
     obras.value = oRes.data
     dashboard.value = dRes.data
     mockInspections.value = dRes.data.ultimasInspecoes
@@ -214,8 +213,7 @@ onMounted(loadData)
 
 const handleNewObra = async (formData) => {
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    await axios.post(`${base}/obras`, formData)
+    await axios.post('/obras', formData)
     await loadData()
     showFeedback({ title: 'Obra criada', message: 'Dashboard atualizado com dados reais.' })
   } catch (error) {
@@ -228,8 +226,7 @@ const handleNewObra = async (formData) => {
 
 const handleNewChecklist = async (formData) => {
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    await axios.post(`${base}/checklists`, formData)
+    await axios.post('/checklists', formData)
     showFeedback({ title: 'Checklist criado', message: 'Modelo disponível para vínculo com obras.' })
   } catch (error) {
     console.error(error)

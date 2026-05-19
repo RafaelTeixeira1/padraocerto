@@ -147,8 +147,7 @@ onMounted(async () => {
   const id = route.params.id
   if (id) {
     try {
-      const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-      const res = await axios.get(`${base}/inspecoes/${id}`)
+      const res = await axios.get(`/inspecoes/${id}`)
       const data = res.data
       report.value.obra = data.obraNome || ''
       report.value.checklist = data.checklistNome || ''

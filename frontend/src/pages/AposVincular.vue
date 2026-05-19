@@ -35,8 +35,7 @@ onMounted(async () => {
   if (!checklistId) return
 
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const response = await axios.get(`${base}/checklists`)
+    const response = await axios.get('/checklists')
     const checklist = response.data.find(item => String(item.id) === String(checklistId))
     checklistNome.value = checklist ? checklist.nome : ''
   } catch (error) {

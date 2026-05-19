@@ -41,8 +41,8 @@ const responsavel = ref(localStorage.getItem('userName') || 'Usuário logado')
 onMounted(async () => {
   try {
     const [oRes, cRes] = await Promise.all([
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/obras/${obraId}`),
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/checklists`)
+      axios.get(`/obras/${obraId}`),
+      axios.get('/checklists')
     ])
     obra.value = oRes.data
     const list = cRes.data
@@ -57,8 +57,7 @@ const confirmStart = async () => {
   errorMessage.value = ''
 
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const res = await axios.post(`${base}/inspecoes`, {
+    const res = await axios.post('/inspecoes', {
       obraId,
       checklistId,
       responsavel: responsavel.value

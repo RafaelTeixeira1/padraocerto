@@ -170,13 +170,12 @@ onMounted(async () => {
 
   loading.value = true
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    const res = await axios.get(`${base}/inspecoes/${inspectionId.value}`)
+    const res = await axios.get(`/inspecoes/${inspectionId.value}`)
     const inspection = res.data
 
     const [obraRes, checklistsRes] = await Promise.all([
-      axios.get(`${base}/obras/${inspection.obraId}`),
-      axios.get(`${base}/checklists`)
+      axios.get(`/obras/${inspection.obraId}`),
+      axios.get('/checklists')
     ])
 
     const checklistData = checklistsRes.data.find(item => item.id === inspection.checklistId)
@@ -233,8 +232,7 @@ const finishInspection = async () => {
 
   try {
     if (inspecaoId) {
-      const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-      await axios.post(`${base}/inspecoes/${inspecaoId}/finish`, { responses: responsesPayload })
+      await axios.post(`/inspecoes/${inspecaoId}/finish`, { responses: responsesPayload })
       showFeedback({ title: 'Inspeção finalizada', message: 'Relatório gerado com a conformidade calculada.' })
       router.push({ name: 'relatorio', params: { id: inspecaoId } })
     } else {

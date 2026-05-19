@@ -127,8 +127,7 @@ const editingChecklist = ref(null)
 const lastUpdate = ref('--')
 
 const loadChecklists = async () => {
-  const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-  const response = await axios.get(`${base}/checklists`)
+  const response = await axios.get('/checklists')
   checklists.value = response.data
   lastUpdate.value = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
 }
@@ -168,11 +167,10 @@ const closeChecklistModal = () => {
 
 const handleSaveChecklist = async (formData) => {
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
     if (formData.id) {
-      await axios.put(`${base}/checklists/${formData.id}`, formData)
+      await axios.put(`/checklists/${formData.id}`, formData)
     } else {
-      await axios.post(`${base}/checklists`, formData)
+      await axios.post('/checklists', formData)
     }
     await loadChecklists()
     selectedChecklist.value = null
@@ -194,8 +192,7 @@ const deleteChecklist = async (checklist) => {
   }
 
   try {
-    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
-    await axios.delete(`${base}/checklists/${checklist.id}`)
+    await axios.delete(`/checklists/${checklist.id}`)
     selectedChecklist.value = null
     await loadChecklists()
     showFeedback({ title: 'Checklist excluído', message: 'O modelo foi removido com sucesso.' })
