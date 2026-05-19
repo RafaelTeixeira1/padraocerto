@@ -29,7 +29,7 @@ O sistema busca melhorar:
 ## Backend
 - Node.js
 - Express.js
-- JWT
+- Sessão simples com token opaco
 - Sequelize
 
 ## Banco de Dados
@@ -75,6 +75,17 @@ padraocerto/
 docker compose up --build -d
 ```
 
+O backend inicializa o Sequelize automaticamente no startup do container, sincroniza as tabelas no MySQL e cria dados mínimos de demonstração quando o banco está vazio.
+
+## Acesso de demonstração
+
+```text
+Email: demo@padraocerto.com
+Senha: 123456
+```
+
+Também é possível criar novos usuários pela tela de cadastro.
+
 ---
 
 # 🌐 Portas do Projeto
@@ -116,6 +127,26 @@ http://localhost:8080
 - Relatórios em PDF
 - Dashboard gerencial
 - Histórico de inspeções
+
+---
+
+# ✅ Persistência
+
+Os dados de usuários, sessões, obras, checklists, vínculos e inspeções são persistidos no MySQL do Docker Compose, usando o volume `padraocerto_db_data`.
+
+Para reiniciar os containers sem apagar dados:
+
+```bash
+docker compose down
+docker compose up --build -d
+```
+
+Para apagar o banco de desenvolvimento e começar limpo:
+
+```bash
+docker compose down -v
+docker compose up --build -d
+```
 
 ---
 
