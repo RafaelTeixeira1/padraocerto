@@ -45,7 +45,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 import { Modal, Button, Input } from '../ui'
 
 defineProps({
@@ -65,16 +67,29 @@ const errors = ref({
   checklistId: ''
 })
 
-const availableChecklists = ref([
-  { id: 1, nome: 'Estrutura Civil', descricao: 'Avaliação da estrutura', itens: ['Fundações', 'Pilares', 'Vigas', 'Lajes'] },
-  { id: 2, nome: 'Segurança', descricao: 'Itens de segurança', itens: ['EPI', 'Sinalização', 'Acesso seguro'] },
-  { id: 3, nome: 'Hidráulica', descricao: 'Sistema hidráulico', itens: ['Tubulações', 'Conexões', 'Testes de pressão'] },
-  { id: 4, nome: 'Elétrica', descricao: 'Sistema elétrico', itens: ['Fiação', 'Quadros', 'Tomadas', 'Iluminação'] }
-])
+const availableChecklists = ref([])
+const loadError = ref('')
+
+const loadChecklists = async () => {
+  const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+  const response = await axios.get(`${base}/checklists`)
+  availableChecklists.value = response.data
+}
+
+onMounted(async () => {
+  try {
+    await loadChecklists()
+  } catch (error) {
+    console.error(error)
+    loadError.value = 'Não foi possível carregar os checklists'
+  }
+})
 
 const selectedChecklist = computed(() => {
   return availableChecklists.value.find(c => c.id === parseInt(form.value.checklistId))
 })
+
+const router = useRouter()
 
 const handleSubmit = async () => {
   errors.value = { checklistId: '' }
@@ -85,9 +100,16 @@ const handleSubmit = async () => {
   }
 
   loading.value = true
-  await new Promise(resolve => setTimeout(resolve, 500))
-  loading.value = false
-
-  emit('submit', form.value)
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    const response = await axios.post(`${base}/obras/${obraId}/vincular`, { checklistId: form.value.checklistId, dataVencimento: form.value.dataVencimento })
+    loading.value = false
+    emit('submit', response.data)
+    router.push({ path: `/obras/${obraId}/apos-vincular`, query: { checklistId: form.value.checklistId } })
+  } catch (err) {
+    loading.value = false
+    console.error(err)
+    errors.value.checklistId = 'Erro ao vincular checklist'
+  }
 }
 </script>
