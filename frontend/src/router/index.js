@@ -6,6 +6,7 @@ import Login from '../pages/Login.vue'
 import Cadastro from '../pages/Cadastro.vue'
 import RecuperarSenha from '../pages/RecuperarSenha.vue'
 import Obras from '../pages/Obras.vue'
+import Checklists from '../pages/Checklists.vue'
 import ObraDetail from '../pages/ObraDetail.vue'
 import ResponderChecklist from '../pages/ResponderChecklist.vue'
 import Relatorio from '../pages/Relatorio.vue'
@@ -41,6 +42,11 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/checklists',
+    component: Checklists,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/obras/:id',
     component: ObraDetail,
     meta: { requiresAuth: true }
@@ -52,7 +58,18 @@ const routes = [
   },
   {
     path: '/relatorio/:id',
+    name: 'relatorio',
     component: Relatorio,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/obras/:obraId/checklist/:checklistId/confirm',
+    component: () => import('../pages/ConfirmStart.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/obras/:obraId/apos-vincular',
+    component: () => import('../pages/AposVincular.vue'),
     meta: { requiresAuth: true }
   },
 

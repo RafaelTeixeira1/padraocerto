@@ -154,7 +154,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { Button } from '../components/ui'
 import { VincularChecklistModal } from '../components/modals'
 
@@ -183,11 +183,13 @@ const obra = ref({
   ]
 })
 
+const router = useRouter()
+
 const startInspection = (checklistId) => {
   const checklist = obra.value.checklists.find(c => c.id === checklistId)
   if (checklist) {
-    // Navegar para a página de responder checklist
-    // router.push(`/obras/${obraId}/checklist/${checklistId}/responder`)
+    // Navegar para a confirmação antes de iniciar
+    router.push(`/obras/${obraId}/checklist/${checklistId}/confirm`)
   }
 }
 

@@ -112,22 +112,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { Button } from '../components/ui'
 import { NewObraModal } from '../components/modals'
+import axios from 'axios'
 
 const searchQuery = ref('')
 const filterStatus = ref('')
 const showNewObraModal = ref(false)
 
-const mockObras = ref([
-  { id: 1, nome: 'Centro Comercial', localizacao: 'Av. Paulista, São Paulo', status: 'ativa', responsavel: 'João Silva', dataInicio: '01/03/2026', inspecoes: 5, conformidade: 88 },
-  { id: 2, nome: 'Residencial Sul', localizacao: 'Rua das Flores, Rio de Janeiro', status: 'ativa', responsavel: 'Maria Santos', dataInicio: '15/02/2026', inspecoes: 8, conformidade: 92 },
-  { id: 3, nome: 'Hospital Regional', localizacao: 'BR-101 km 150, Bahia', status: 'ativa', responsavel: 'Pedro Costa', dataInicio: '10/01/2026', inspecoes: 12, conformidade: 76 },
-  { id: 4, nome: 'Escola Pública', localizacao: 'Centro, Minas Gerais', status: 'finalizada', responsavel: 'Ana Souza', dataInicio: '01/11/2025', inspecoes: 20, conformidade: 85 },
-  { id: 5, nome: 'Prédio Comercial', localizacao: 'Setor Comercial, Brasília', status: 'pausada', responsavel: 'Carlos Lima', dataInicio: '20/04/2026', inspecoes: 3, conformidade: 65 },
-  { id: 6, nome: 'Shopping Center', localizacao: 'Zona Sul, São Paulo', status: 'ativa', responsavel: 'João Silva', dataInicio: '05/05/2026', inspecoes: 2, conformidade: 91 }
-])
+const mockObras = ref([])
+
+const loadObras = async () => {
+  const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+  const response = await axios.get(`${base}/obras`)
+  mockObras.value = response.data.map(obra => ({
+    ...obra,
+    inspecoes: obra.historico?.length || 0,
+    conformidade: obra.historico?.length
+      ? Math.round(obra.historico.reduce((total, item) => total + item.conformidade, 0) / obra.historico.length)
+      : 100
+  }))
+}
+
+onMounted(async () => {
+  try {
+    await loadObras()
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 const filteredObras = computed(() => {
   return mockObras.value.filter(obra => {
@@ -138,15 +152,15 @@ const filteredObras = computed(() => {
   })
 })
 
-const handleNewObra = (formData) => {
-  showNewObraModal.value = false
-  const newObra = {
-    id: mockObras.value.length + 1,
-    ...formData,
-    status: 'ativa',
-    inspecoes: 0,
-    conformidade: 100
+const handleNewObra = async (formData) => {
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    await axios.post(`${base}/obras`, formData)
+    await loadObras()
+  } catch (error) {
+    console.error(error)
+  } finally {
+    showNewObraModal.value = false
   }
-  mockObras.value.push(newObra)
 }
 </script>

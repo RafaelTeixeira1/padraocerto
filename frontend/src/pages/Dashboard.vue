@@ -115,6 +115,13 @@
     <!-- Latest Inspections -->
     <div class="bg-card rounded-lg border border-border p-6 shadow-sm">
       <h2 class="text-lg font-semibold text-foreground mb-4">Últimas Inspeções</h2>
+      <div class="mb-4 flex items-center gap-3">
+        <label class="text-sm text-muted-foreground">Filtrar por obra:</label>
+        <select v-model="filterObra" class="px-3 py-2 rounded border border-input bg-white">
+          <option value="">Todas Obras</option>
+          <option v-for="o in obras" :key="o.id" :value="o.id">{{ o.nome }}</option>
+        </select>
+      </div>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead class="border-b border-border">
@@ -128,7 +135,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(inspection, idx) in mockInspections" :key="idx" class="border-b border-border hover:bg-muted/50 transition-colors">
+            <tr v-for="(inspection, idx) in mockInspections.filter(i => !filterObra || i.obraId == filterObra)" :key="idx" class="border-b border-border hover:bg-muted/50 transition-colors">
               <td class="py-3 px-3 text-foreground">{{ inspection.obra }}</td>
               <td class="py-3 px-3 text-foreground">{{ inspection.checklist }}</td>
               <td class="py-3 px-3 text-foreground">{{ inspection.responsavel }}</td>
@@ -160,26 +167,51 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Button } from '../components/ui'
 import { NewObraModal, NewChecklistModal } from '../components/modals'
+import axios from 'axios'
 
 const showNewObraModal = ref(false)
 const showNewChecklistModal = ref(false)
 
-const mockInspections = ref([
-  { id: 1, obra: 'Centro Comercial', checklist: 'Estrutura Civil', responsavel: 'João Silva', conformidade: 88, data: '19/05/2026' },
-  { id: 2, obra: 'Residencial Sul', checklist: 'Acabamento', responsavel: 'Maria Santos', conformidade: 92, data: '18/05/2026' },
-  { id: 3, obra: 'Hospital', checklist: 'Segurança', responsavel: 'Pedro Costa', conformidade: 76, data: '17/05/2026' },
-  { id: 4, obra: 'Escola Pública', checklist: 'Hidráulica', responsavel: 'Ana Souza', conformidade: 85, data: '16/05/2026' },
-  { id: 5, obra: 'Prédio Comercial', checklist: 'Elétrica', responsavel: 'Carlos Lima', conformidade: 65, data: '15/05/2026' }
-])
+const mockInspections = ref([])
+const obras = ref([])
+const filterObra = ref('')
 
-const handleNewObra = (formData) => {
-  showNewObraModal.value = false
+const loadData = async () => {
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    const [oRes, iRes] = await Promise.all([axios.get(`${base}/obras`), axios.get(`${base}/inspecoes`)])
+    obras.value = oRes.data
+    mockInspections.value = iRes.data
+  } catch (err) {
+    console.error(err)
+  }
 }
 
-const handleNewChecklist = (formData) => {
-  showNewChecklistModal.value = false
+onMounted(loadData)
+
+const handleNewObra = async (formData) => {
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    await axios.post(`${base}/obras`, formData)
+    await loadData()
+  } catch (error) {
+    console.error(error)
+  } finally {
+    showNewObraModal.value = false
+  }
+}
+
+const handleNewChecklist = async (formData) => {
+  try {
+    const base = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+    await axios.post(`${base}/checklists`, formData)
+  } catch (error) {
+    console.error(error)
+  } finally {
+    showNewChecklistModal.value = false
+  }
 }
 </script>
