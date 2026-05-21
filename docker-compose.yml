@@ -55,10 +55,11 @@ services:
     volumes:
       - padraocerto_db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot || exit 1"]
       interval: 10s
-      timeout: 5s
-      retries: 5
+      timeout: 10s
+      retries: 15
+      start_period: 90s
     networks:
       - padraocerto_network
 
