@@ -1,22 +1,22 @@
-# PadraoCerto
+# PadrãoCerto
 
-Sistema web para gerenciamento de obras, checklists de qualidade e inspecoes na construcao civil.
+Sistema web para gerenciamento de obras, checklists de qualidade e inspeções na construção civil.
 
-O projeto foi desenvolvido para a disciplina **Desenvolvimento de Software Baseado em Frameworks**.
+O projeto foi desenvolvido para a disciplina Desenvolvimento de Software Baseado em Frameworks.
 
 ---
 
 ## Objetivo
 
-O PadraoCerto auxilia engenheiros, tecnicos e responsaveis por obras a padronizar inspecoes de qualidade. A aplicacao permite cadastrar obras, criar checklists, vincular checklists a obras, executar inspecoes e acompanhar indicadores no dashboard.
+O PadrãoCerto auxilia engenheiros, técnicos e responsáveis por obras a padronizar inspeções de qualidade. A aplicação permite cadastrar obras, criar checklists, vincular checklists a obras, executar inspeções e acompanhar indicadores no dashboard.
 
 O sistema busca melhorar:
 
-- Rastreabilidade das inspecoes.
-- Padronizacao dos processos de verificacao.
-- Controle de conformidades e nao conformidades.
-- Registro de evidencias e historico por obra.
-- Acompanhamento visual das informacoes principais.
+- Rastreabilidade das inspeções.
+- Padronização dos processos de verificação.
+- Controle de conformidades e não conformidades.
+- Registro de evidências e histórico por obra.
+- Acompanhamento visual das informações principais.
 
 ---
 
@@ -24,42 +24,42 @@ O sistema busca melhorar:
 
 ### Frontend: Vue.js 3
 
-Vue.js e um framework JavaScript progressivo usado para construir interfaces web reativas e componentizadas. Ele e adequado para aplicacoes SPA, dashboards, sistemas CRUD, paineis administrativos e interfaces que precisam responder rapidamente as acoes do usuario.
+Vue.js é um framework JavaScript progressivo usado para construir interfaces web reativas e componentizadas. Ele é adequado para aplicações SPA, dashboards, sistemas CRUD, painéis administrativos e interfaces que precisam responder rapidamente às ações do usuário.
 
-No projeto, o Vue.js e responsavel pelas telas, componentes visuais, navegacao e integracao com a API.
+No projeto, o Vue.js é responsável pelas telas, componentes visuais, navegação e integração com a API.
 
 Principais recursos utilizados:
 
 - **Componentes Vue** para reaproveitar estruturas de interface.
-- **Vue Router** para rotas publicas e protegidas.
-- **Axios** para comunicacao HTTP com o backend.
+- **Vue Router** para rotas públicas e protegidas.
+- **Axios** para comunicação HTTP com o backend.
 - **Vite** para ambiente de desenvolvimento e build.
 
 Por que escolhemos Vue.js:
 
-- Curva de aprendizado amigavel.
-- Boa organizacao por componentes.
+- Curva de aprendizado amigável.
+- Boa organização por componentes.
 - Ecossistema simples para projetos CRUD.
-- Integracao direta com APIs REST.
-- Performance adequada para dashboards e formularios.
+- Integração direta com APIs REST.
+- Performance adequada para dashboards e formulários.
 
 ### Backend: Express.js
 
-Express.js e um framework Node.js minimalista para construcao de APIs e aplicacoes web. Ele utiliza JavaScript no servidor e oferece recursos de roteamento, middlewares e tratamento de requisicoes HTTP.
+Express.js é um framework Node.js minimalista para construção de APIs e aplicações web. Ele utiliza JavaScript no servidor e oferece recursos de roteamento, middlewares e tratamento de requisições HTTP.
 
-No projeto, o Express.js e responsavel pela API REST, autenticacao, validacoes, regras de negocio e comunicacao com o banco de dados via Sequelize.
+No projeto, o Express.js é responsável pela API REST, autenticação, validações, regras de negócio e comunicação com o banco de dados via Sequelize.
 
 Principais recursos utilizados:
 
-- **Rotas HTTP** para autenticar usuarios, gerenciar obras, checklists e inspecoes.
+- **Rotas HTTP** para autenticar usuários, gerenciar obras, checklists e inspeções.
 - **Sequelize** como ORM para modelar e consultar o MySQL.
 
 Por que escolhemos Express.js:
 
 - Simplicidade para criar APIs REST.
-- Flexibilidade para organizar a aplicacao.
+- Flexibilidade para organizar a aplicação.
 - Uso de JavaScript no frontend e no backend.
-- Boa integracao com MySQL via Sequelize.
+- Boa integração com MySQL via Sequelize.
 - Comunidade grande e documentacao abundante.
 
 ---
@@ -101,15 +101,15 @@ O projeto usa uma arquitetura em camadas inspirada em MVC:
 - **View:** telas e componentes em Vue.js dentro de `frontend/src`.
 - **Controller/Rotas:** endpoints Express definidos em `backend/src/server.js`.
 - **Model:** modelos Sequelize definidos em `backend/src/server.js`.
-- **Data:** persistencia em MySQL.
+- **Data:** persistência em MySQL.
 
 Fluxo principal:
 
 ```text
-1. Usuario interage com uma tela Vue.
-2. O frontend envia uma requisicao via Axios.
-3. O Express recebe a requisicao em uma rota.
-4. A rota aplica validacoes e regras de negocio.
+1. Usuário interage com uma tela Vue.
+2. O frontend envia uma requisição via Axios.
+3. O Express recebe a requisição em uma rota.
+4. A rota aplica validações e regras de negócio.
 5. O Sequelize consulta ou altera dados no MySQL.
 6. A API retorna JSON.
 7. O Vue atualiza a interface.
@@ -119,13 +119,13 @@ Fluxo principal:
 
 As regras principais estao em `backend/src/server.js`:
 
-- `requireAuth`: valida a sessao enviada no header `Authorization`.
-- `validateChecklistInput`: valida nome, descricao e quantidade de itens do checklist.
-- `validateObraInput`: valida campos obrigatorios de uma obra.
-- Rotas `/auth/*`: cadastro, login, recuperacao de senha, logout e usuario atual.
-- Rotas `/obras/*`: cadastro, listagem, edicao, exclusao logica e vinculacao de checklists.
+- `requireAuth`: valida a sessão enviada no header `Authorization`.
+- `validateChecklistInput`: valida nome, descrição e quantidade de itens do checklist.
+- `validateObraInput`: valida campos obrigatórios de uma obra.
+- Rotas `/auth/*`: cadastro, login, recuperação de senha, logout e usuário atual.
+- Rotas `/obras/*`: cadastro, listagem, edição, exclusão lógica e vinculação de checklists.
 - Rotas `/checklists/*`: CRUD de checklists e itens.
-- Rotas `/inspecoes/*`: inicio, finalizacao, consulta e historico de inspecoes.
+- Rotas `/inspecoes/*`: início, finalização, consulta e histórico de inspeções.
 - Rota `/dashboard`: dados consolidados para a tela inicial.
 
 ---
@@ -162,13 +162,13 @@ padraocerto/
 
 ## Como Executar
 
-### Pre-requisitos
+### Pré-requisitos
 
 - Docker instalado.
 - Docker Compose instalado.
 - Portas livres: `5173`, `3000`, `3306` e `8080`.
 
-### Subir a aplicacao
+### Subir a aplicação
 
 ```bash
 git clone https://github.com/RafaelTeixeira1/padraocerto.git
@@ -191,7 +191,7 @@ Credenciais padrao do MySQL:
 - Senha: `root`
 - Banco: `padraocerto`
 
-### Parar a aplicacao
+### Parar a aplicação
 
 ```bash
 docker compose down
@@ -199,11 +199,11 @@ docker compose down
 
 ## Funcionalidades Implementadas
 
-### Autenticacao
+### Autenticação
 
-- Cadastro de usuario.
+- Cadastro de usuário.
 - Login com email e senha.
-- Recuperacao de senha com senha temporaria.
+- Recuperação de senha com senha temporária.
 - Logout.
 - Rotas protegidas no frontend e no backend.
 
@@ -211,35 +211,35 @@ docker compose down
 
 - Cadastro de obras.
 - Listagem de obras.
-- Visualizacao de detalhes.
-- Edicao de dados.
-- Exclusao logica.
-- Vinculacao de checklists a uma obra.
+- Visualização de detalhes.
+- Edição de dados.
+- Exclusão lógica.
+- Vinculação de checklists a uma obra.
 
 ### Checklists
 
 - Cadastro de checklists.
 - Listagem de checklists.
-- Edicao.
-- Exclusao.
+- Edição.
+- Exclusão.
 - Cadastro de itens do checklist.
 - Validacao de minimo de 3 e maximo de 20 itens.
 
 ### Inspecoes
 
-- Inicio de uma inspecao a partir de obra e checklist.
-- Registro de respostas conforme ou nao conforme.
-- Observacoes por item.
-- Finalizacao da inspecao.
+- Início de uma inspeção a partir de obra e checklist.
+- Registro de respostas conforme ou não conforme.
+- Observações por item.
+- Finalização da inspeção.
 - Calculo de percentual de conformidade.
-- Historico de inspecoes finalizadas.
+- Histórico de inspeções finalizadas.
 
 ### Dashboard
 
 - Total de obras.
 - Total de checklists.
-- Total de inspecoes finalizadas.
-- Media geral de conformidade.
+- Total de inspeções finalizadas.
+- Média geral de conformidade.
 
 ---
 
@@ -249,31 +249,31 @@ docker compose down
 
 ![Dashboard](docs/ui/dashboard.png)
 
-Tela inicial com indicadores do sistema e acesso rapido as principais areas.
+Tela inicial com indicadores do sistema e acesso rápido às principais áreas.
 
 ### Cadastro de Obras
 
 ![Cadastro de obras](docs/ui/modalCriacaoObras.png)
 
-Modal para cadastrar uma nova obra com nome, localizacao, responsavel, data de inicio e descricao.
+Modal para cadastrar uma nova obra com nome, localização, responsável, data de início e descrição.
 
 ### Painel de Obras
 
 ![Painel de obras](docs/ui/painelObras.png)
 
-Listagem das obras cadastradas, com acoes para visualizar, editar, excluir e acessar detalhes.
+Listagem das obras cadastradas, com ações para visualizar, editar, excluir e acessar detalhes.
 
 ### Cadastro de Checklists
 
 ![Cadastro de checklists](docs/ui/modalCriacaoCheck.png)
 
-Modal para criar checklists padronizados com descricao e itens de verificacao.
+Modal para criar checklists padronizados com descrição e itens de verificação.
 
 ### Painel de Checklists
 
 ![Painel de checklists](docs/ui/painelChecklists.png)
 
-Listagem dos checklists cadastrados, com opcoes de edicao e exclusao.
+Listagem dos checklists cadastrados, com opções de edição e exclusão.
 
 ---
 
@@ -281,28 +281,28 @@ Listagem dos checklists cadastrados, com opcoes de edicao e exclusao.
 
 ### Autenticacao
 
-| Metodo | Rota | Descricao |
+| Metodo | Rota | Descrição |
 |---|---|---|
-| `POST` | `/auth/register` | Cadastra usuario |
-| `POST` | `/auth/login` | Autentica usuario |
-| `POST` | `/auth/recover` | Gera senha temporaria |
-| `POST` | `/auth/logout` | Encerra sessao |
-| `GET` | `/auth/me` | Retorna usuario autenticado |
+| `POST` | `/auth/register` | Cadastra usuário |
+| `POST` | `/auth/login` | Autentica usuário |
+| `POST` | `/auth/recover` | Gera senha temporária |
+| `POST` | `/auth/logout` | Encerra sessão |
+| `GET` | `/auth/me` | Retorna usuário autenticado |
 
 ### Obras
 
-| Metodo | Rota | Descricao |
+| Metodo | Rota | Descrição |
 |---|---|---|
 | `GET` | `/obras` | Lista obras |
 | `POST` | `/obras` | Cria obra |
 | `GET` | `/obras/:id` | Detalha obra |
 | `PUT` | `/obras/:id` | Atualiza obra |
 | `DELETE` | `/obras/:id` | Remove obra |
-| `POST` | `/obras/:id/vincular` | Vincula checklist a obra |
+| `POST` | `/obras/:id/vincular` | Vincula checklist à obra |
 
 ### Checklists
 
-| Metodo | Rota | Descricao |
+| Metodo | Rota | Descrição |
 |---|---|---|
 | `GET` | `/checklists` | Lista checklists |
 | `POST` | `/checklists` | Cria checklist |
@@ -311,12 +311,12 @@ Listagem dos checklists cadastrados, com opcoes de edicao e exclusao.
 
 ### Inspecoes e Dashboard
 
-| Metodo | Rota | Descricao |
+| Metodo | Rota | Descrição |
 |---|---|---|
-| `POST` | `/inspecoes` | Inicia inspecao |
-| `POST` | `/inspecoes/:id/finish` | Finaliza inspecao |
-| `GET` | `/inspecoes/:id` | Detalha inspecao |
-| `GET` | `/inspecoes` | Lista inspecoes |
+| `POST` | `/inspecoes` | Inicia inspeção |
+| `POST` | `/inspecoes/:id/finish` | Finaliza inspeção |
+| `GET` | `/inspecoes/:id` | Detalha inspeção |
+| `GET` | `/inspecoes` | Lista inspeções |
 | `GET` | `/dashboard` | Retorna indicadores |
 
 ---
@@ -334,38 +334,38 @@ Listagem dos checklists cadastrados, com opcoes de edicao e exclusao.
 | Autenticacao | Montada conforme a necessidade | Solucoes prontas no ecossistema |
 | Melhor uso | APIs, SPAs e servicos leves | Aplicacoes full-stack robustas |
 
-Conclusao: Express.js deu mais liberdade para montar a API do PadraoCerto, enquanto Laravel ofereceria mais convencoes prontas. Para este projeto, Express.js foi adequado por ser simples, direto e facil de integrar com Vue.js.
+Conclusão: Express.js deu mais liberdade para montar a API do PadrãoCerto, enquanto Laravel ofereceria mais convenções prontas. Para este projeto, Express.js foi adequado por ser simples, direto e fácil de integrar com Vue.js.
 
 ---
 
 ## Pontos Positivos
 
 - Uso de JavaScript no frontend e backend.
-- Separacao clara entre interface e API.
+- Separação clara entre interface e API.
 - Docker Compose facilita a execucao do ambiente.
 - Vue.js permite criar telas reativas e componentizadas.
 - Express.js facilita a criacao de endpoints REST.
-- Sequelize simplifica a integracao com MySQL.
-- Estrutura suficiente para demonstrar CRUD completo e regras de negocio.
+- Sequelize simplifica a integração com MySQL.
+- Estrutura suficiente para demonstrar CRUD completo e regras de negócio.
 
 ---
 
 ## Dificuldades Encontradas
 
-- Ajustar a comunicacao entre frontend e backend.
+- Ajustar a comunicação entre frontend e backend.
 - Configurar corretamente os containers Docker e a conexao com MySQL.
-- Definir validacoes no frontend e tambem no backend.
-- Organizar o fluxo de sessao para proteger rotas.
-- Modelar relacionamentos entre obras, checklists e inspecoes.
+- Definir validações no frontend e também no backend.
+- Organizar o fluxo de sessão para proteger rotas.
+- Modelar relacionamentos entre obras, checklists e inspeções.
 - Sincronizar os dados exibidos no dashboard com o estado real da API.
 
 ---
 
 ## Utilizariamos Novamente?
 
-Sim. A combinacao Vue.js + Express.js funcionou bem para um sistema CRUD com dashboard e API REST. O Vue.js facilitou a construcao das telas, enquanto o Express.js permitiu criar rapidamente as rotas e regras de negocio.
+Sim. A combinação Vue.js + Express.js funcionou bem para um sistema CRUD com dashboard e API REST. O Vue.js facilitou a construção das telas, enquanto o Express.js permitiu criar rapidamente as rotas e regras de negócio.
 
-Em uma proxima versao, seriam melhorias importantes:
+Em uma próxima versão, seriam melhorias importantes:
 
 - Separar o backend em arquivos de rotas, controllers e models.
 - Adicionar migrations do Sequelize.
@@ -382,11 +382,7 @@ Projeto academico desenvolvido para a disciplina **Desenvolvimento de Software B
 
 Autores:
 
-- Rafael Teixeira - Backend e infraestrutura.
-- Jhannyfer Biangulo - Frontend e interface.
+- Rafael Teixeira
+- Jhannyfer Biangulo
 
 ---
-
-## Licenca
-
-Projeto academico para fins educacionais.
