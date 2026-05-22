@@ -339,54 +339,6 @@ Listagem dos checklists cadastrados, com opcoes de edicao e exclusao.
 
 ---
 
-## Exemplo de Uso do Express.js no Projeto
-
-Trecho simplificado do fluxo de autenticacao usado pela API:
-
-```javascript
-const requireAuth = async (req, res, next) => {
-  const auth = req.get("authorization") || "";
-  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
-
-  if (!token) return res.status(401).json({ error: "Autenticacao obrigatoria" });
-
-  const session = await Session.findOne({
-    where: { token, expiresAt: { [Op.gt]: new Date() } },
-    include: [User],
-  });
-
-  if (!session) return res.status(401).json({ error: "Sessao invalida ou expirada" });
-
-  req.user = session.User;
-  req.session = session;
-  next();
-};
-```
-
-Esse middleware mostra um dos principais recursos do Express.js: interceptar a requisicao antes da rota final para validar regras comuns.
-
----
-
-## Exemplo de Uso do Vue Router no Projeto
-
-O frontend usa rotas publicas e protegidas. As rotas protegidas consultam a sessao salva no `localStorage`.
-
-```javascript
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem("session");
-
-  if (to.meta.requiresAuth && !isAuthenticated) {
-    next("/login");
-  } else if (to.meta.layout === "blank" && isAuthenticated) {
-    next("/");
-  } else {
-    next();
-  }
-});
-```
-
----
-
 ## Comparacao: Express.js x Laravel
 
 | Aspecto | Express.js | Laravel |
