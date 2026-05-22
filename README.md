@@ -71,15 +71,12 @@ Por que escolhemos Express.js:
 - Vue.js 3
 - Vue Router
 - Axios
-- Vite
-- Tailwind CSS
 
 ### Backend
 
 - Node.js
 - Express.js
 - Sequelize
-- bcryptjs
 - MySQL2
 
 ### Banco de Dados
