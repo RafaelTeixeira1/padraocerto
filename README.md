@@ -246,6 +246,8 @@ docker compose down
 
 #### Exemplo: Configuração e CRUD básico
 
+**Localização:** `backend/src/server.js` ou `backend/src/routes/inspections.js`
+
 ```javascript
 const express = require("express");
 const app = express();
@@ -286,6 +288,8 @@ app.listen(3000);
 - **Diretivas úteis**: `v-if`, `v-for`, `v-on` para controle de DOM
 
 #### Exemplo: Componente Vue.js com CRUD
+
+**Localização:** `frontend/src/views/Inspections.vue` ou `frontend/src/components/InspectionList.vue`
 
 ```vue
 <template>
@@ -340,8 +344,9 @@ const delete = (id) => {
 
 #### Exemplo: Vue Router
 
+**Localização:** `frontend/src/router/index.js`
+
 ```javascript
-// router.js
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -360,8 +365,9 @@ export default router;
 
 #### Exemplo: Pinia (Gerenciamento de Estado)
 
+**Localização:** `frontend/src/stores/authStore.js`
+
 ```javascript
-// stores/authStore.js
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -392,8 +398,9 @@ export const useAuthStore = defineStore("auth", () => {
 
 #### Exemplo: Definir um Modelo
 
+**Localização:** `backend/src/models/Inspection.js`
+
 ```javascript
-// models/Inspection.js
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
@@ -408,8 +415,9 @@ module.exports = (sequelize) => {
 
 #### Exemplo: Operações básicas com Sequelize
 
+**Localização:** `backend/src/controllers/InspectionController.js`
+
 ```javascript
-// controllers/InspectionController.js
 const create = async (req, res) => {
   const inspection = await Inspection.create(req.body);
   res.status(201).json(inspection);
@@ -443,8 +451,9 @@ JWT (JSON Web Token) é autenticação stateless: o servidor emite um token que 
 
 #### Exemplo: Login (Backend)
 
+**Localização:** `backend/src/routes/auth.js`
+
 ```javascript
-// routes/auth.js
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -462,8 +471,9 @@ router.post("/login", async (req, res) => {
 
 #### Exemplo: Middleware de Autenticação
 
+**Localização:** `backend/src/middleware/auth.js`
+
 ```javascript
-// middleware/auth.js
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Token obrigatório" });
@@ -482,8 +492,9 @@ module.exports = verifyToken;
 
 #### Exemplo: Usar JWT no Frontend
 
+**Localização:** `frontend/src/stores/authStore.js`
+
 ```javascript
-// stores/authStore.js
 const login = async (email, password) => {
   const res = await axios.post("/api/auth/login", { email, password });
   localStorage.setItem("token", res.data.token);
