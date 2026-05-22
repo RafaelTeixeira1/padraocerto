@@ -246,7 +246,7 @@ docker compose down
 
 #### Exemplo: Configuração e CRUD básico
 
-**Localização:** `backend/src/server.js` ou `backend/src/routes/inspections.js`
+`backend/src/server.js` ou `backend/src/routes/inspections.js`
 
 ```javascript
 const express = require("express");
@@ -289,7 +289,7 @@ app.listen(3000);
 
 #### Exemplo: Componente Vue.js com CRUD
 
-**Localização:** `frontend/src/views/Inspections.vue` ou `frontend/src/components/InspectionList.vue`
+`frontend/src/views/Inspections.vue` ou `frontend/src/components/InspectionList.vue`
 
 ```vue
 <template>
@@ -344,7 +344,7 @@ const delete = (id) => {
 
 #### Exemplo: Vue Router
 
-**Localização:** `frontend/src/router/index.js`
+`frontend/src/router/index.js`
 
 ```javascript
 import { createRouter, createWebHistory } from "vue-router";
@@ -365,7 +365,7 @@ export default router;
 
 #### Exemplo: Pinia (Gerenciamento de Estado)
 
-**Localização:** `frontend/src/stores/authStore.js`
+`frontend/src/stores/authStore.js`
 
 ```javascript
 import { defineStore } from "pinia";
@@ -398,7 +398,7 @@ export const useAuthStore = defineStore("auth", () => {
 
 #### Exemplo: Definir um Modelo
 
-**Localização:** `backend/src/models/Inspection.js`
+`backend/src/models/Inspection.js`
 
 ```javascript
 const { DataTypes } = require("sequelize");
@@ -415,7 +415,7 @@ module.exports = (sequelize) => {
 
 #### Exemplo: Operações básicas com Sequelize
 
-**Localização:** `backend/src/controllers/InspectionController.js`
+`backend/src/controllers/InspectionController.js`
 
 ```javascript
 const create = async (req, res) => {
@@ -451,7 +451,7 @@ JWT (JSON Web Token) é autenticação stateless: o servidor emite um token que 
 
 #### Exemplo: Login (Backend)
 
-**Localização:** `backend/src/routes/auth.js`
+`backend/src/routes/auth.js`
 
 ```javascript
 const jwt = require("jsonwebtoken");
@@ -471,7 +471,7 @@ router.post("/login", async (req, res) => {
 
 #### Exemplo: Middleware de Autenticação
 
-**Localização:** `backend/src/middleware/auth.js`
+`backend/src/middleware/auth.js`
 
 ```javascript
 const verifyToken = (req, res, next) => {
@@ -492,7 +492,7 @@ module.exports = verifyToken;
 
 #### Exemplo: Usar JWT no Frontend
 
-**Localização:** `frontend/src/stores/authStore.js`
+`frontend/src/stores/authStore.js`
 
 ```javascript
 const login = async (email, password) => {
