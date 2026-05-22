@@ -2,7 +2,7 @@
 
 Sistema web para gerenciamento de obras, checklists de qualidade e inspecoes na construcao civil.
 
-O projeto foi desenvolvido para a disciplina **Desenvolvimento de Software Baseado em Frameworks** e atende aos direcionamentos do Projeto Pratico 2: demonstrar o uso de frameworks, explicar a arquitetura adotada, documentar a execucao do sistema e apresentar funcionalidades com prints.
+O projeto foi desenvolvido para a disciplina **Desenvolvimento de Software Baseado em Frameworks**.
 
 ---
 
@@ -31,7 +31,6 @@ No projeto, o Vue.js e responsavel pelas telas, componentes visuais, navegacao e
 Principais recursos utilizados:
 
 - **Componentes Vue** para reaproveitar estruturas de interface.
-- **Composition API** com `ref`, `computed` e funcoes reativas.
 - **Vue Router** para rotas publicas e protegidas.
 - **Axios** para comunicacao HTTP com o backend.
 - **Vite** para ambiente de desenvolvimento e build.
@@ -53,10 +52,7 @@ No projeto, o Express.js e responsavel pela API REST, autenticacao, validacoes, 
 Principais recursos utilizados:
 
 - **Rotas HTTP** para autenticar usuarios, gerenciar obras, checklists e inspecoes.
-- **Middlewares** para CORS, JSON e autenticacao.
 - **Sequelize** como ORM para modelar e consultar o MySQL.
-- **bcryptjs** para armazenar senhas com hash.
-- **crypto** para gerar tokens de sessao e senhas temporarias.
 
 Por que escolhemos Express.js:
 
@@ -158,8 +154,6 @@ padraocerto/
 │   ├── ui/                    # Prints das funcionalidades
 │   ├── evidencias/
 │   └── metricas/
-├── scripts/
-│   └── api-smoke-test.mjs     # Teste rapido da API
 ├── docker-compose.yml
 └── README.md
 ```
@@ -203,16 +197,6 @@ Credenciais padrao do MySQL:
 docker compose down
 ```
 
-### Teste rapido da API
-
-Com os containers em execucao, rode:
-
-```bash
-node scripts/api-smoke-test.mjs
-```
-
----
-
 ## Funcionalidades Implementadas
 
 ### Autenticacao
@@ -222,8 +206,6 @@ node scripts/api-smoke-test.mjs
 - Recuperacao de senha com senha temporaria.
 - Logout.
 - Rotas protegidas no frontend e no backend.
-
-A autenticacao usa uma sessao persistida no banco. O backend gera um token com `crypto.randomBytes`, salva esse token na tabela `Sessions` com prazo de expiracao e valida as requisicoes protegidas pelo header `Authorization: Bearer <token>`.
 
 ### Obras
 
