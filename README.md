@@ -236,6 +236,124 @@ docker compose down
 
 ---
 
+## 🖼️ Funcionalidades em Ação
+
+### 1. Login e Autenticação
+
+![Login](docs/ui/login.png)
+
+O sistema possui autenticação segura com JWT. O usuário acessa a plataforma através de email e senha, e recebe um token de autenticação para operações futuras.
+
+---
+
+### 2. Recuperação de Senha
+
+![Recuperar Senha](docs/ui/recuperarSenha.png)
+
+Funcionalidade para recuperar acesso à conta através de email de verificação.
+
+---
+
+### 3. Cadastro de Usuários
+
+![Cadastro Usuário](docs/ui/cadastroUsuari.png)
+
+Registro de novos usuários no sistema com validação de dados e confirmação.
+
+---
+
+### 4. Dashboard Principal
+
+![Dashboard 1](docs/ui/dashboard1.png)
+
+Visão geral do sistema com estatísticas e acessos rápidos às principais funcionalidades.
+
+![Dashboard 2](docs/ui/dashboard2.png)
+
+Dashboard com gráficos e informações consolidadas das obras e inspeções.
+
+---
+
+### 5. Criação de Obras
+
+![Nova Obra](docs/ui/novaObra.png)
+
+Interface para cadastrar novas obras no sistema com todas as informações necessárias.
+
+![Detalhe Obra](docs/ui/detalheObra.png)
+
+Visualização detalhada da obra criada com todas as informações e ações relacionadas.
+
+---
+
+### 6. Criação de Checklists
+
+![Novo Checklist](docs/ui/novoChecklist.png)
+
+Formulário para criar novos checklists padronizados que serão utilizados nas inspeções.
+
+---
+
+### 7. Vinculação de Checklists a Obras
+
+![Vincular Checklist](docs/ui/VincularChecklist.png)
+
+Interface para associar checklists às obras, preparando para execução das inspeções.
+
+![Após Vincular](docs/ui/aposVincular.png)
+
+Visualização da obra após a vinculação do checklist, pronta para inspeção.
+
+---
+
+### 8. Execução de Inspeções
+
+#### Iniciando Inspeção - Etapa 1
+
+![Início Checklist 1](docs/ui/inicioChecklist1.png)
+
+Primeiro passo da execução do checklist com apresentação das questões iniciais.
+
+#### Continuando Inspeção - Etapa 2
+
+![Início Checklist 2](docs/ui/inicioChecklist2.png)
+
+Progresso da inspeção com mais questões e opções de resposta (Conforme/Não Conforme).
+
+---
+
+### 9. Checklist em Progresso
+
+![Checklist Respondido Não Finalizado](docs/ui/checklistRespondidoMaisNaoFinalizado.png)
+
+Estado do checklist durante o preenchimento, mostrando o progresso e permitindo edições.
+
+---
+
+### 10. Finalização de Checklists
+
+#### Resultado 1
+
+![Checklist Finalizado 1](docs/ui/checklistFinalizado1.png)
+
+Checklist concluído com exibição dos resultados finais da inspeção.
+
+#### Resultado 2
+
+![Checklist Finalizado 2](docs/ui/checklistFinalizado2.png)
+
+Visualização alternativa dos resultados com resumo das conformidades encontradas.
+
+---
+
+### 11. Detalhes de Obras com Checklists Finalizados
+
+![Detalhe Obra Checklist Finalizado](docs/ui/DetalheObrasChecklistFinalizado.png)
+
+Página da obra mostrando todos os checklists finalizados, histórico de inspeções e relatórios gerados.
+
+---
+
 ## 🔑 Principais Recursos do Framework
 
 ### Express.js
