@@ -39,6 +39,12 @@ pie showData
 
 Os dados foram registrados de forma rastreavel a partir das issues do GitHub, milestones, commits do repositorio e planilha de horas da equipe. O GitHub foi utilizado para acompanhar escopo, prazo, produtividade e distribuicao das atividades. A planilha de horas foi usada para medir esforco humano e retrabalho, pois o GitHub nao registra homem-hora diretamente.
 
+### Evidencia da planilha de horas
+
+A imagem abaixo mostra a planilha utilizada pela equipe para registrar data, responsavel, issue, descricao da atividade, status, horas trabalhadas, indicacao de retrabalho e observacoes. Essa planilha foi usada como fonte principal para calcular esforco, distribuicao de horas e percentual de retrabalho.
+
+![Planilha de horas das metricas](planilha_horas_metricas.png)
+
 ### 5.1 Metricas de projeto registradas
 
 | Dimensao | Metrica registrada | Fonte | Registro consolidado |
